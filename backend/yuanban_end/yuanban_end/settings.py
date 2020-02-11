@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     # 'users',
     'rest_framework.authtoken',
     'corsheaders',
-    # 'ielts',
+    'course',
     'backendusers'
 ]
 AUTH_USER_MODEL = 'backendusers.UserProFile'
