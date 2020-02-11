@@ -1,0 +1,31 @@
+<!-- <import src="../../templates/footer/footer.wxml" /> -->
+<view class='user_views'>
+  <view class='user_xuanxiang_list_view'>
+    <!--订单列表  -->
+    <view class='tools_list'>
+      <view catchtap='yasi'>
+        <image src='../../images/icon/yasi.png'></image>
+        <text>IELTS</text>
+      </view>
+    </view>
+    <view class='tools_list'>
+      <view catchtap='tuofu'>
+        <image src='../../images/icon/toefl.png'></image>
+        <text>TOEFL</text>
+      </view>
+    </view>
+    <view class='tools_list'>
+      <view catchtap='gre'>
+        <image src='../../images/icon/gre.png'></image>
+        <text>GRE</text>
+      </view>
+    </view>
+    <view class='tools_list'>
+      <view catchtap='gmat'>
+        <image src='../../images/icon/gmat.png'></image>
+        <text>GMAT</text>
+      </view>
+    </view>
+    <!--订单列表  -->
+  </view>
+</view>

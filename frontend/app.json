@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/user/user",
+    "pages/user/userinfo/userinfo",
+    "pages/user/meeting/meeting",
+    "pages/user/record/record",
+    "pages/user/xuexi/xuexi",
+    "pages/user/rank/rank",
+    "pages/user/advice/advice",
+    "pages/index/index",
+    "pages/index/ielts/ielts",
+    "pages/index/toefl/toefl",
+    "pages/index/gre/gre",
+    "pages/index/gmat/gmat",
+    "pages/bookmeeting/bookmeeting",
+    "pages/login/login",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#eb4901",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/bookmeeting/bookmeeting",
+        "text": "会议",
+        "iconPath": "./images/icon/index0.png",
+        "selectedIconPath": "./images/icon/index.png"
+        
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "打卡",
+        "iconPath": "./images/icon/messages.png",
+        "selectedIconPath": "./images/icon/messages0.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "./images/icon/user0.png",
+        "selectedIconPath": "./images/icon/user.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}
