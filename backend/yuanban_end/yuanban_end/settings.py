@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     # 'users',
     'rest_framework.authtoken',
     'corsheaders',
-    # 'ielts',
+    'course',
     'backendusers'
 ]
 AUTH_USER_MODEL = 'backendusers.UserProFile'
@@ -143,7 +143,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-IMAGES_URL = "http://127.0.0.1:8001/"
+IMAGES_URL = "http://127.0.0.1:8001"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
