@@ -24,10 +24,10 @@ from rest_framework_jwt.serializers import (
 )
 from rest_framework_jwt.settings import api_settings
 from yuanban_end.sys_info import MINI_APP_ID, MINI_APP_SECRET
-from users.models import UserProFile
+from .models import UserProFile
 from yuanban_end.settings import BASE_DIR
 from yuanban_end.settings import IMAGES_URL
-from users.Serializers import UserRegSerializer
+from .Serializers import UserRegSerializer
 
 jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
 encoding='unicode_escape'
@@ -309,3 +309,7 @@ class GetUser(views.APIView):
             self.request.user.save()
             return Response({'message': '签名已更新'}, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+def test(request):
+    pass

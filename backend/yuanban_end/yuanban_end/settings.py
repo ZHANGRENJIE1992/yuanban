@@ -40,12 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users',
+    # 'users',
     'rest_framework.authtoken',
     'corsheaders',
-    'ielts',
+    # 'ielts',
+    'backendusers'
 ]
-AUTH_USER_MODEL = 'users.UserProFile'
+AUTH_USER_MODEL = 'backendusers.UserProFile'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -87,7 +88,8 @@ DATABASES = {
         'USER': 'root',
         #'PASSWORD':'Yantuagent2017',
         'PASSWORD': 'ZRJ19920708',
-        'HOST': '127.0.0.1',
+        # 'HOST': '127.0.0.1',
+        'HOST': '132.232.79.194',
         #'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -169,9 +171,15 @@ REST_FRAMEWORK = {
 REST_FRAMEWORK_EXTENSIONS = {
     'DEFAULT_CACHE_RESPONSE_TIMEOUT': 10 * 120
 }
+#
+# JWT_AUTH = {
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=360),
+#     'JWT_AUTH_HEADER_PREFIX': 'JWT',
+# }
+# MEDIA_ROOT=os.path.join(BASE_DIR,"blog","media")  #blog是项目名，media是约定成俗的文件夹名
+# MEDIA_URL="/media/"      # 跟STATIC_URL类似，指定用户可以通过这个路径找到文件
+#
 
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=360),
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
-}
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # blog是项目名，media是约定成俗的文件夹名
+MEDIA_URL = "/media/"  # 跟STATIC_URL类似，指定用户可以通过这个路径找到文件

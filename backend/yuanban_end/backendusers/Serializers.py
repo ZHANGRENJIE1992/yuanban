@@ -9,7 +9,7 @@
 # @Software: 一起哟预约报名小程序后端
 from rest_framework import serializers
 
-from users.models import UserProFile
+from .models import UserProFile
 
 class UserRegSerializer(serializers.ModelSerializer):
     class Meta:

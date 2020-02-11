@@ -1,38 +1,18 @@
 from uuid import uuid4
 from django.db import models
 from datetime import datetime
-from django.contrib.auth import get_user_model  # 继承Django_AbstractUser用来扩展models
-from users.models import UserProFile
-USER = get_user_model()
+from django.contrib.auth.models import AbstractUser  # 继承Django_AbstractUser用来扩展models
+
 image_file = uuid4().hex
 
 
 # Create your models here.
 
-class ieltsModel(models.Model):
+class UserProFile(AbstractUser):
     '''
-    雅思
+    用户表
     '''
-    user = models.ForeignKey(UserProFile, verbose_name='用户', on_delete=models.CASCADE)
-    signdate = models.DateTimeField(default=datetime.now, verbose_name='打卡时间')
-    buqianstatus = models.BooleanField(default=False, verbose_name='是否补签')
-    wordnumber = models.IntegerField(default=0, verbose_name='单词背诵数量')
-    readpercent = models.IntegerField(default=0, verbose_name='阅读正确率')
-    listenpercent = models.IntegerField(default=0, verbose_name='听力正确率')
-    wordimageset = models.ImageField(upload_to='ielts/%y/%m/%d/{{imagewordset}}',null=True,
-                                    blank=True, verbose_name='单词图片')
-    readimageset = models.ImageField(upload_to='ielts/%y/%m/%d/{{imagereadset}}',null=True,
-                                    blank=True, verbose_name='阅读图片')
-    writeimageset = models.ImageField(upload_to='ielts/%y/%m/%d/{{imagewriteset}}',null=True,
-                                    blank=True, verbose_name='写作图片')
-    listenimageset = models.ImageField(upload_to='ielts/%y/%m/%d/{{imagelistenset}}',null=True,
-                                    blank=True, verbose_name='听力图片')
-    speakimageset = models.ImageField(upload_to='ielts/%y/%m/%d/{{imagespeakset}}',null=True,
-                                    blank=True, verbose_name='口语图片')
-
-
-
-    '''GENDER = {
+    GENDER = {
         ("1", "男"),
         ("2", "女")
     }
@@ -59,9 +39,9 @@ class ieltsModel(models.Model):
     agreement = models.BooleanField(default=False, verbose_name='是否阅读协议')
     email = models.EmailField(max_length=100, null=True, blank=True, verbose_name="邮箱")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="注册时间")
-'''
+
     class Meta:
-        verbose_name = '雅思打卡'
+        verbose_name = '用户管理'
         verbose_name_plural = verbose_name
 
     def __str__(self):

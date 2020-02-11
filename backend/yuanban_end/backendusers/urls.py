@@ -16,16 +16,15 @@ Including another URLconf
 #from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 
-from ielts.views import createieltsdetailinfo
+from .views import Registered, ObtainJSONWebToken, GetUser
 
-from django.conf.urls import url, include
-
+from django.urls import path,include,re_path
+app_name = 'users'
 router = DefaultRouter()
-router.register(r'ielts', createieltsdetailinfo, base_name='ieltsdetailinfo')  #ielts 基础信息
+router.register(r'Registered', Registered, basename='Registered')  # 注册
 
 urlpatterns = [
-    #url(r'^', include(router.urls)),
-    url('^Create/', createieltsdetailinfo.as_view(), name='createielts'),
-    #url('onebook/', csrf_exempt(views.OneBookView.as_view()), name='onebook'),
-    #url('allbook/', csrf_exempt(views.AllBook.as_view()), name='allbook'),
+    re_path(r'^', include(router.urls)),
+    re_path(r'^login/$', ObtainJSONWebToken.as_view()),  # 登录
+    re_path('^GetUser/', GetUser.as_view(), name='GetUser'),  # 用户
 ]
