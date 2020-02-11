@@ -45,7 +45,7 @@ class createieltsdetailinfo(views.APIView):
     def post(self, request):
         # try:
         datechoice = request.data['riqi_index']
-        print(datechoice)
+        print(request.data)
         if (datechoice == 0):
             date = datetime.datetime.now().strftime("%Y-%m-%d")
             delaystatus = False
