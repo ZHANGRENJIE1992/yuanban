@@ -10,7 +10,7 @@ from django.shortcuts import render
 from rest_framework import authentication
 from rest_framework import views, viewsets
 from rest_framework.response import Response
-
+from django.http import JsonResponse
 from utils.weixin_util.weixin import WXAPPAPI
 from utils.permissions import IsOwnerOrReadOnly  # 登陆验证
 from rest_framework.mixins import CreateModelMixin
@@ -40,96 +40,99 @@ class createieltsdetailinfo(views.APIView):
     authentication_classes = (authentication.SessionAuthentication, JSONWebTokenAuthentication)  # Token验证
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
     def post(self,request):
-        try:
-            datechoice = request.data('riqi_index')
-            if(datachoice == 0):
-                date = datetime.datetime.now().strftime("%Y-%m-%d") 
-                delaystatus = False
-            elif(datachoice == 1):
-                date = (datetime.datetime.now()+datetime.timedelta(days=-1)).strftime("%Y-%m-%d")
-                delaystatus = True
-            elif(datachoice == 2):
-                date = (datetime.datetime.now()+datetime.timedelta(days=-2)).strftime("%Y-%m-%d")
-                delaystatus = True
-            userid = request.data('username')
-            wordnumber =  request.data('wordnumber')
-            readpercent = request.data('readpercent')
-            listenpercent = request.data('listenpercent')
-            #雅思单词图片组
-            ieltswordPicset = request.data('upImgArr')
-            ieltswordPath = os.path.join(BASE_DIR, 'upload/ielts/word/')
-            #雅思阅读图片组
-            ieltsreadPicset = request.data('upImgArr_read')
-            ieltsreadPath = os.path.join(BASE_DIR, 'upload/ielts/read/')
-            #雅思写作图片组
-            ieltswritePicset = request.data('upImg_write')
-            ieltswritePath = os.path.join(BASE_DIR, 'upload/ielts/write/')
-            #雅思听力图片组
-            ieltslistenPicset = request.data('upImgArr_listen')
-            ieltslistenPath = os.path.join(BASE_DIR, 'upload/ielts/listen/')
-            #雅思口语图片组
-            ieltsspeakPicset = request.data('upImgArr_speak')
-            ieltsspeakPath = os.path.join(BASE_DIR, 'upload/ielts/speak/')
+        #try:
+        datechoice = request.data['riqi_index']
+        print(datechoice)
+        if(datechoice == 0):
+            date = datetime.datetime.now().strftime("%Y-%m-%d") 
+            delaystatus = False
+        elif(datechoice == 1):
+            date = (datetime.datetime.now()+datetime.timedelta(days=-1)).strftime("%Y-%m-%d")
+            delaystatus = True
+        elif(datechoice == 2):
+            date = (datetime.datetime.now()+datetime.timedelta(days=-2)).strftime("%Y-%m-%d")
+            delaystatus = True
+        userid = request.data['username']
+        wordnumber =  request.data['new_danci']
+        readpercent = request.data['new_read']
+        listenpercent = request.data['new_listen']
+        #雅思单词图片组
+        ieltswordPicset = request.data['upImgArr']
+        ieltswordPath = os.path.join(BASE_DIR, 'upload/ielts/word/')
+        #雅思阅读图片组
+        ieltsreadPicset = request.data['upImgArr_read']
+        ieltsreadPath = os.path.join(BASE_DIR, 'upload/ielts/read/')
+        #雅思写作图片组
+        ieltswritePicset = request.data['upImgArr_write']
+        ieltswritePath = os.path.join(BASE_DIR, 'upload/ielts/write/')
+        #雅思听力图片组
+        ieltslistenPicset = request.data['upImgArr_listen']
+        ieltslistenPath = os.path.join(BASE_DIR, 'upload/ielts/listen/')
+        #雅思口语图片组
+        ieltsspeakPicset = request.data['upImgArr_speak']
+        ieltsspeakPath = os.path.join(BASE_DIR, 'upload/ielts/speak/')
+        
+        ieltsdetail = ieltsModel()
+        user = UserProFile.objects.get(username=userid)
+        
+        ieltsdetail.user = user
+        ieltsdetail.signdate = date
+        ieltsdetail.buqianstatus = delaystatus
+        ieltsdetail.wordnumber = wordnumber
+        ieltsdetail.readpercent = readpercent
+        ieltsdetail.listenpercent = listenpercent
+        index_word = 0
+        for item in ieltswordPicset:
+            index_word += 1
+            ieltswordname = ieltswordPath + date + index + userid + ".png"
+            image = Image.open(BytesIO(item.content))
+            image.save(ieltswordname)
+            ieltsdetail.wordimageset = item
+
+        index_read = 0
+        for item in ieltsreadPicset:
+            index_read += 1
+            ieltsreadname = ieltsreadPath + date + index + userid + ".png"
+            image = Image.open(BytesIO(item.content))
+            image.save(ieltsreadname) 
+            ieltsdetail.readimageset = item
+
+        index_write = 0
+        for item in ieltswritePicset:
+            index_write += 1
+            ieltswritename = ieltswritePath + date + index + userid + ".png"
+            image = Image.open(BytesIO(item.content))
+            image.save(ieltswritename) 
+            ieltsdetail.writeimageset = item
+
+        index_listen = 0
+        for item in ieltslistenPicset:
+            index_listen += 1
+            ieltslistenname = ieltslistenPath + date + index + userid + ".png"
+            image = Image.open(BytesIO(item.content))
+            image.save(ieltslistenname) 
+            ieltsdetail.listenimageset = item
+
+        index_speak = 0
+        for item in ieltsspeakPicset:
+            index_speak += 1
+            ieltsspeakname = ieltsspeakPath + date + index + userid + ".png"
+            image = Image.open(BytesIO(item.content))
+            image.save(ieltsspeakname) 
+            ieltsdetail.speakimageset = item
+
+        ieltsdetail.save()
+
             
-            ieltsdetail = ieltsModel()
-            user = User.objects.get(username=userid)
-            
-            ieltsdetail.user = user
-            ieltsdetail.signdate = date
-            ieltsdetail.buqianstatus = delaystatus
-            ieltsdetail.wordnumber = wordnumber
-            ieltsdetail.readpercent = readpercent
-            ieltsdetail.listenpercent = listenpercent
-            index_word = 0
-            for item in ieltswordPicset:
-                index_word += 1
-                ieltswordname = ieltswordPath + date + index + userid + ".png"
-                image = Image.open(BytesIO(item.content))
-                image.save(ieltswordname)
-                ieltsdetail.wordimageset = item
-
-            index_read = 0
-            for item in ieltsreadPicset:
-                index_read += 1
-                ieltsreadname = ieltsreadPath + date + index + userid + ".png"
-                image = Image.open(BytesIO(item.content))
-                image.save(ieltsreadname) 
-                ieltsdetail.readimageset = item
-
-            index_write = 0
-            for item in ieltswritePicset:
-                index_write += 1
-                ieltswritename = ieltswritePath + date + index + userid + ".png"
-                image = Image.open(BytesIO(item.content))
-                image.save(ieltswritename) 
-                ieltsdetail.writeimageset = item
-
-            index_listen = 0
-            for item in ieltslistenPicset:
-                index_listen += 1
-                ieltslistenname = ieltslistenPath + date + index + userid + ".png"
-                image = Image.open(BytesIO(item.content))
-                image.save(ieltslistenname) 
-                ieltsdetail.listenimageset = item
-
-            index_speak = 0
-            for item in ieltsspeakPicset:
-                index_speak += 1
-                ieltsspeakname = ieltsspeakPath + date + index + userid + ".png"
-                image = Image.open(BytesIO(item.content))
-                image.save(ieltsspeakname) 
-                ieltsdetail.speakimageset = item
-
-            ieltsdetail.save()
-
-            
 
 
 
-        except:
-            return JsonResponse(self.msg(20000))
+        '''#except:
+            return JsonResponse(a:20000)
+            print("20000")
         else:
-            return JsonResponse(self.msg(10000, info))
+            return JsonResponse(c:10000)
+            print("10000")'''
 
 
             
