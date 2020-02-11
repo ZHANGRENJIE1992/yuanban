@@ -43,7 +43,7 @@ def post_wxcode(code_urls=code_urls, path="pages/index/index", width=430, is_hya
     return code
 
 
-def image_saver(image_paths="upload/images/", image_name="", qr_code=post_wxcode()):
+def image_saver(image_paths="media/upload/images/", image_name="", qr_code=post_wxcode()):
     '''
     :param file_path:
     :param file_name:

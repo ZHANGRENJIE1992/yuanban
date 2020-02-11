@@ -59,8 +59,10 @@ class createieltsdetailinfo(views.APIView):
         wordnumber = request.data['new_danci']
         readpercent = request.data['new_read']
         listenpercent = request.data['new_listen']
+        print(listenpercent)
         # 雅思单词图片组
         ieltswordPicset = request.data['upImgArr']
+        print(ieltswordPicset)
         ieltswordPath = os.path.join(BASE_DIR, 'upload/ielts/word/')
         # 雅思阅读图片组
         ieltsreadPicset = request.data['upImgArr_read']
@@ -75,7 +77,7 @@ class createieltsdetailinfo(views.APIView):
         ieltsspeakPicset = request.data['upImgArr_speak']
         ieltsspeakPath = os.path.join(BASE_DIR, 'upload/ielts/speak/')
 
-        ieltsdetail = ieltsModel()
+        '''ieltsdetail = ieltsModel()
         user = UserProFile.objects.get(username=userid)
 
         ieltsdetail.user = user
@@ -124,7 +126,7 @@ class createieltsdetailinfo(views.APIView):
             image.save(ieltsspeakname)
             ieltsdetail.speakimageset = item
 
-        ieltsdetail.save()
+        ieltsdetail.save()'''
 
         '''#except:
             return JsonResponse(a:20000)

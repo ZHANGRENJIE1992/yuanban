@@ -12,7 +12,7 @@ var GetUser = host + '/users/GetUser/'
 
 //提交ielts信息
 
-var Ieltssubmitinfo = host + '/ielts/Create/'
+var Ieltssubmitinfo = host + '/course/ielts/Create/'
 
 
 module.exports = {
