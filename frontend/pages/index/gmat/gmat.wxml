@@ -1,2 +1,187 @@
-<!--pages/index/gmat/gmat.wxml-->
-<text>pages/index/gmat/gmat.wxml</text>
+<form bindsubmit="subFormData">
+  <view class='ielts_view'>
+    <view class= 'ielts_signin_view'>
+    <text >签到日期</text>
+      <view class='ielts_signin_view_choice'>
+        <picker name='riqi_index' class='gerenxinxi_view_touxiang_images_sr' data-type='GHXB' bindchange="riqi" value='{{riqi_index}}' range='{{riqi_STR}}'>{{riqi_STR[riqi_index]}} 
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </picker>
+      </view>
+    </view>
+    <view class= 'ielts_signin_view'>
+    <text >单词数量</text>
+      <view class='ielts_signin_view_choice'>
+        <view class='gerenxinxi_view_touxiang_images_sr' bindtap="danci_number" data-nametitle='单词数量' data-userdata='{{dancinumber}}'>
+        <text>{{new_danci==null?'请输入':new_danci}}</text>
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class= 'ielts_signin_view'>
+    <text >阅读正确率</text>
+      <view class='ielts_signin_view_choice'>
+        <view class='gerenxinxi_view_touxiang_images_sr' bindtap="read_number" data-nametitle='阅读数量数量' data-userdata='{{readnumber}}'>
+        <text>{{new_read==null?'请输入':new_read+'%'}}</text> 
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class= 'ielts_signin_view'>
+      <text >语法正确率</text>
+      <view class='ielts_signin_view_choice'>
+        <view class='gerenxinxi_view_touxiang_images_sr' bindtap="listen_number" data-nametitle='填空数量' data-userdata='{{listennumber}}'>
+        <text>{{new_listen==null?'请输入':new_listen+'%'}}</text>
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class= 'ielts_signin_view'>
+      <text >逻辑正确率</text>
+      <view class='ielts_signin_view_choice'>
+        <view class='gerenxinxi_view_touxiang_images_sr' bindtap="listen_number" data-nametitle='逻辑数量' data-userdata='{{listennumber}}'>
+        <text>{{new_listen==null?'请输入':new_listen+'%'}}</text>
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class= 'ielts_signin_view'>
+      <text >数学正确率</text>
+      <view class='ielts_signin_view_choice'>
+        <view class='gerenxinxi_view_touxiang_images_sr' bindtap="listen_number" data-nametitle='数学数量' data-userdata='{{listennumber}}'>
+        <text>{{new_listen==null?'请输入':new_listen+'%'}}</text>
+        <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="optClass">
+      <view class='optName'>单词打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view name='upImgArr' class='uploadimgbox' wx:for="{{upImgArr}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile'>X</cover-view>
+      </view>
+
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{word_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+
+  <view class="optClass">
+      <view class='optName'>阅读打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view class='uploadimgbox' wx:for="{{upImgArr_read}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_read' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_read'>X</cover-view>
+      </view>
+
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{read_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+    <view class="optClass">
+      <view class='optName'>写作打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view class='uploadimgbox' wx:for="{{upImgArr_write}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_write' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_write'>X</cover-view>
+      </view>
+
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{write_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+    <view class="optClass">
+      <view class='optName'>语法打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view class='uploadimgbox' wx:for="{{upImgArr_listen}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_listen' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_listen'>X</cover-view>
+      </view>
+
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{listen_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+
+      <view class="optClass">
+      <view class='optName'>数学打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view class='uploadimgbox' wx:for="{{upImgArr_speak}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_speak' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_speak'>X</cover-view>
+      </view>
+      
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{speak_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+
+    <view class="optClass">
+      <view class='optName'>逻辑打卡</view> 
+      <view class='optContent'>上传图片</view>
+    </view>
+    <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+      <view class='uploadimgbox' wx:for="{{upImgArr_listen}}" wx:key="item">
+          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_listen' mode='aspectFill'></image>
+          <cover-view class='progress' wx:if="{{upFilesProgress}}">
+              {{item.progress}}%
+          </cover-view>
+          <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_listen'>X</cover-view>
+      </view>
+
+      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+        <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{listen_index}}" src='../../../images/icon/addimgsbtn.png'></image>
+      </view>
+    </view>
+
+    <view class="subBtnBox">
+      <button class='subBtn' type='button' formType="submit">提交</button>
+    </view>
+
+
+    <!-- 单词数量修改  -->
+    <modal id="modal" hidden="{{dancihiddeninput}}"  catchtouchmove='true' title="单词数量" confirm-text="更改" cancel-text="取消" bindcancel="canceldanci" bindconfirm="confirmdanci">
+      <input name='danci_number' style='margin-top:20rpx;' type='number' adjust-position="true" bindinput='new_dancis' cursor-spacing='70' maxlength='11' value='{{new_danci}}' placeholder="输入单词数量" />
+    </modal>
+    <!--单词数量修改   -->
+
+      <!-- 阅读修改  -->
+    <modal id="modal" hidden="{{readhiddeninput}}"  catchtouchmove='true' title="阅读正确率" confirm-text="更改" cancel-text="取消" bindcancel="cancelread" bindconfirm="confirmread">
+      <input name='read_number' style='margin-top:20rpx;' type='number' adjust-position="true" bindinput='new_reads' cursor-spacing='70' maxlength='11' value='{{new_read}}' placeholder="输入阅读正确率%" />
+    </modal>
+    <!--阅读修改   -->
+
+      <!-- 听力修改  -->
+    <modal id="modal" hidden="{{listenhiddeninput}}"  catchtouchmove='true' title="填空正确率" confirm-text="更改" cancel-text="取消" bindcancel="cancellisten" bindconfirm="confirmlisten">
+      <input name='listen_number' style='margin-top:20rpx;' type='number' adjust-position="true" bindinput='new_listens' cursor-spacing='70' maxlength='11' value="{{new_listen}}" placeholder="输入填空正确率%" />
+    </modal>
+    <!--听力修改   -->
+
+  </view>
+</form>

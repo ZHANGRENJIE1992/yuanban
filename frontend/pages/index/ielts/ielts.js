@@ -342,31 +342,6 @@ Page({
     upFiles.chooseImage(_this, _this.data.maxUploadLen, uploadindex)
   },
 
-
-  // 选择图片或者视频
-  uploadFiles_write: function (e) {
-    var _this = this;
-    //   console.log(res.tapIndex)
-    upFiles.chooseImage(_this, _this.data.maxUploadLen)
-  },
-
-
-  // 选择图片或者视频
-  uploadFiles_listen: function (e) {
-    var _this = this;
-    //   console.log(res.tapIndex)
-    upFiles.chooseImage(_this, _this.data.maxUploadLen)
-  },
-
-
-  // 选择图片或者视频
-  uploadFiles_speak: function (e) {
-    var _this = this;
-    //   console.log(res.tapIndex)
-    upFiles.chooseImage(_this, _this.data.maxUploadLen)
-  },
-
-
   new_dancis: function (event) {
     var that = this
     var new_danci = event.detail.value

@@ -120,6 +120,54 @@ var chooseImage = (t, count, uploadindex) =>{
                 })
               }
             }
+            if (uploadindex == 5) {
+              var imgArr_gmat_word = t.data.upImgArr_gmat_word || [];
+              let arr_gmat_word = res.tempFiles;
+              //console.log(res)
+              //console.log(t)
+              arr_gmat_word.map(function (v, i) {
+                v['progress'] = 0;
+                imgArr_gmat_word.push(v)
+              })
+              t.setData({
+                upImgArr_gmat_word: imgArr_gmat_word
+              })
+
+              let upFilesArr_gmat_word = getPathArr(t);
+              if (upFilesArr_gmat_word.length > count - 1) {
+                let imgArr_gmat_word = t.data.upImgArr_gmat_word;
+                let newimgArr_gmat_word = imgArr_gmat_word.slice(0, count)
+                t.setData({
+                  upFilesBtn: false,
+                  upImgArr_gmat_word: newimgArr_gmat_word
+                })
+              }
+            }
+            if (uploadindex == 6) {
+              var imgArr_gmat_grammar = t.data.upImgArr_gmat_grammar || [];
+              let arr_gmat_grammar = res.tempFiles;
+              //console.log(res)
+              //console.log(t)
+              arr_gmat_grammar.map(function (v, i) {
+                v['progress'] = 0;
+                imgArr_gmat_grammar.push(v)
+              })
+              t.setData({
+                upImgArr_gmat_grammar: imgArr_gmat_grammar
+              })
+
+              let upFilesArr_gmat_grammar = getPathArr(t);
+              if (upFilesArr_gmat_grammar.length > count - 1) {
+                let imgArr_gmat_grammar = t.data.upImgArr_gmat_grammar;
+                let newimgArr_gmat_grammar = imgArr_gmat_grammar.slice(0, count)
+                t.setData({
+                  upFilesBtn: false,
+                  upImgArr_gmat_grammar: newimgArr_gmat_grammar
+                })
+              }
+            }
+
+
           },
       });
     

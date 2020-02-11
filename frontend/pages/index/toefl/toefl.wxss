@@ -1,1 +1,173 @@
-/* pages/index/toefl/toefl.wxss */
+/* pages/index/ielts/ielts.wxss */
+page{
+ background-color: #f7f7ff;
+}
+.ielts_view {
+  display: flex;
+  flex-direction: column;
+  font-weight: 200;
+}
+
+.ielts_signin_view {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-bottom: 1rpx ridge #ededed;
+  padding-bottom: 10rpx;
+}
+
+.ielts_signin_view text {
+  line-height: 80rpx;
+  vertical-align: middle; /* 垂直居中 */
+}
+
+.ielts_signin_view_choice {
+  float: right;
+}
+
+.ielts_signin_view_choice text {
+  margin-right: 20rpx;
+  color: #ce0a0a;
+}
+
+.optClass{
+    background-color: #fff;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding:0 30rpx;
+    flex-wrap:wrap;
+}
+
+.optClass .optName{
+    width: 200rpx;
+}
+.optClass .optName text,.optClass .mesTit text{
+    color: #ce0a0a;
+}
+
+.optClass .optContent{
+    flex: 1;
+    text-align: right;
+    color: #666;
+    font-size: 32rpx;
+    font-size:24rpx;
+    color:#999;
+}
+
+
+.optClass .uploadimgbox{
+    flex: 0 0 33.333%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.optClass .uploadimgbox{
+    flex: 0 0 33.333%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10rpx;
+    margin-bottom: 10rpx;
+}
+.optClass .uploadimgbox .progress{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 208rpx;
+    z-index: 99;
+}
+.optClass .uploadimgbox .delbtn{
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 50rpx;
+    z-index: 98;
+}
+.optClass .uploadimg,.optClass .uploadbtn{
+    display: block;
+    width: 100%;
+    height: 208rpx;
+}
+
+.touxiang_images {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 100rpx;
+  vertical-align: middle; /* 垂直居中 */
+  margin-right: 10rpx;
+}
+
+.touxiang_xiugaitishi {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle; /* 垂直居中 */
+}
+
+.gerenxinxi_view_touxiang_images_wx {
+  float: right;
+  margin-right: 40rpx;
+}
+
+.gerenxinxi_view_touxiang_images_sr {
+  line-height: 80rpx;
+}
+
+.USER_IDD {
+  font-size: 27rpx;
+}
+
+.value_thesignature_content {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.gerenxinxi_view_touxiangs {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-bottom: 1rpx ridge #ededed;
+  padding-bottom: 10rpx;
+}
+
+.henchang {
+  margin-right: 20rpx;
+  margin-left: 70rpx;
+  display: block;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subBtnBox .subBtn{
+    width: 80%;
+    display: block;
+    margin: 80rpx auto;
+    background-color: #ce0a0a;
+    color: #fff;
+    font-size: 32rpx;
+}
+.subBtnBox .subBtn.button-hover{
+    background-color: #bb0909;
+}

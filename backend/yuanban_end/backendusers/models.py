@@ -23,14 +23,14 @@ class UserProFile(AbstractUser):
     province = models.CharField(max_length=100, default='', verbose_name='用户微信城市')
     city = models.CharField(max_length=100, default='', verbose_name='用户微信区域')
     language = models.CharField(max_length=100, default='', verbose_name='用户微信语言')
-    background = models.ImageField(upload_to='UserProFilebg/%Y/%m/{imagess}'.format(imagess=image_file), null=True,
+    background = models.ImageField(upload_to='media/UserProFilebg/%Y/%m/{imagess}'.format(imagess=image_file), null=True,
                                    blank=True,
                                    default='/default/default.jpg',
                                    verbose_name='背景图')
     nickName = models.CharField(max_length=20, verbose_name="微信用户名")
     name = models.CharField(max_length=20, verbose_name="用户名")
     birthay = models.DateField(default=datetime.now, verbose_name="出生日期")
-    avatar = models.ImageField(upload_to='UserProFilebg/avatar/%y/%d/{image_file}'.format(image_file=image_file), null=True,
+    avatar = models.ImageField(upload_to='media/UserProFilebg/avatar/%y/%d/{image_file}'.format(image_file=image_file), null=True,
                                blank=True)
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="手机号")
     gender = models.CharField(max_length=10, choices=GENDER, default="1",

@@ -26,7 +26,7 @@ from rest_framework_jwt.settings import api_settings
 from yuanban_end.sys_info import MINI_APP_ID, MINI_APP_SECRET
 from .models import UserProFile
 from yuanban_end.settings import BASE_DIR
-from yuanban_end.settings import IMAGES_URL
+from yuanban_end.settings import IMAGES_URL,MEDIA_URL
 from .Serializers import UserRegSerializer
 
 jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
@@ -170,7 +170,7 @@ class Registered(CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModel
         language = user_info['language']  # 获取语言
         nickName = user_info['nickName']  # 获取昵称
         # 保存用户头像到本地
-        avatarPath = os.path.join(BASE_DIR, 'upload/UserProFilebg/avatar/')
+        avatarPath = os.path.join(BASE_DIR, 'media/upload/UserProFilebg/avatar/')
         avatarGet = requests.get(avatarUrl)
         avatar_name = avatarPath + openid + '.png'
         image = Image.open(BytesIO(avatarGet.content))
@@ -250,13 +250,13 @@ class GetUser(views.APIView):
             gender = '女'
         user_info = {
             'name': name,
-            'avatar': IMAGES_URL + 'upload/' + str(avatar),
+            'avatar': IMAGES_URL + MEDIA_URL + 'upload/' + str(avatar),
             'thesignature': thesignature,
             'gender': gender,
             'nickName': nickName,
             'mobile': mobile,
             'birthay': datetime.datetime.strftime(birthay, "%Y-%m-%d"),
-            'background': IMAGES_URL + 'upload/' + str(background),
+            'background': IMAGES_URL + MEDIA_URL + 'upload/' + str(background),
             'username':username
         }
         return Response(user_info, status=status.HTTP_200_OK)

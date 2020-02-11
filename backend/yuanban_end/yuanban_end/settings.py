@@ -88,7 +88,7 @@ DATABASES = {
         'USER': 'root',
         #'PASSWORD':'Yantuagent2017',
         'PASSWORD': 'ZRJ19920708',
-        # 'HOST': '127.0.0.1',
+        #'HOST': '127.0.0.1',
         'HOST': '132.232.79.194',
         #'HOST': 'localhost',
         'PORT': '3306',
@@ -143,7 +143,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-IMAGES_URL = "http://127.0.0.1:8001/"
+IMAGES_URL = "http://127.0.0.1:8001"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
