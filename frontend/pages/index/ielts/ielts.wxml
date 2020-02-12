@@ -69,7 +69,7 @@
           <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_read'>X</cover-view>
       </view>
 
-      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+      <view class='uploadimgbox' wx:if="{{upFilesBtn_read}}">
         <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{read_index}}" src='../../../images/icon/addimgsbtn.png'></image>
       </view>
     </view>
@@ -86,7 +86,7 @@
           <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_write'>X</cover-view>
       </view>
 
-      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+      <view class='uploadimgbox' wx:if="{{upFilesBtn_write}}">
         <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{write_index}}" src='../../../images/icon/addimgsbtn.png'></image>
       </view>
     </view>
@@ -103,7 +103,7 @@
           <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_listen'>X</cover-view>
       </view>
 
-      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+      <view class='uploadimgbox' wx:if="{{upFilesBtn_listen}}">
         <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{listen_index}}" src='../../../images/icon/addimgsbtn.png'></image>
       </view>
     </view>
@@ -121,7 +121,7 @@
           <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile_speak'>X</cover-view>
       </view>
       
-      <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+      <view class='uploadimgbox' wx:if="{{upFilesBtn_speak}}">
         <image class='uploadbtn' bindtap='uploadFiles' data-upload ="{{speak_index}}" src='../../../images/icon/addimgsbtn.png'></image>
       </view>
     </view>

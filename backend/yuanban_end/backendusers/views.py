@@ -256,7 +256,7 @@ class GetUser(views.APIView):
             'nickName': nickName,
             'mobile': mobile,
             'birthay': datetime.datetime.strftime(birthay, "%Y-%m-%d"),
-            'background': IMAGES_URL + MEDIA_URL + 'upload/' + str(background),
+            'background': IMAGES_URL + "/" + str(background),
             'username':username
         }
         return Response(user_info, status=status.HTTP_200_OK)
@@ -279,6 +279,7 @@ class GetUser(views.APIView):
             return Response(status=status.HTTP_200_OK)
         elif type == 'GHBJ':
             image_files = request.data['file']
+            print("打印:", image_files)
             self.request.user.background = image_files
             self.request.user.save()
             return Response(status=status.HTTP_200_OK)
