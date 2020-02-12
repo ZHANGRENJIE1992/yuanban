@@ -42,7 +42,7 @@ def createuuid():
     return shortuuid.uuid()
 
 
-def create_course(data, mold):
+def create_course(data, user, mold):
     datechoice = int(data['riqi_index'])
     date = datetime.date.today()
     delaystatus = False
@@ -52,7 +52,8 @@ def create_course(data, mold):
     elif (datechoice == 2):
         date = datetime.date.today() + datetime.timedelta(days=-2)
         delaystatus = True
-    userid = data['username']
+    # userid = data['username']
+    # print(4444444444444444, data['username'])
     wordnumber = data['new_danci']
     readpercent = data['new_read']
     listenpercent = data['new_listen']
@@ -75,7 +76,7 @@ def create_course(data, mold):
         ieltsspeakPicset = data['upImgArr_speak']
         ieltsspeakPath = 'upload/ielts/speak/'
 
-        user = UserProFile.objects.get(username=userid)
+        # user = UserProFile.objects.get(username=userid)
         print(date)
         older = ieltsModel.objects.filter(user=user, signdate=date)
         if older:
@@ -100,7 +101,7 @@ def create_course(data, mold):
         ieltsspeakPicset = data['upImgArr_speak']
         ieltsspeakPath = 'upload/toefl/speak/'
 
-        user = UserProFile.objects.get(username=userid)
+        # user = UserProFile.objects.get(username=userid)
         print(date)
         older = toeflModel.objects.filter(user=user, signdate=date)
         if older:
@@ -216,7 +217,7 @@ class createieltsdetailinfo(views.APIView):
 
     def post(self, request):
         try:
-            create_course(data=request.data, mold=1)
+            create_course(data=request.data, user=request.user, mold=1)
             # datechoice = int(request.data['riqi_index'])
             # print(request.data)
             # # if (datechoice == 0):
@@ -379,7 +380,7 @@ class createtoefldetailinfo(views.APIView):
 
     def post(self, request):
         try:
-            create_course(data=request.data, mold=2)
+            create_course(data=request.data, user=request.user, mold=2)
         except Exception as e:
             # print(e)
             # print("20000")
@@ -563,7 +564,7 @@ class creategredetailinfo(views.APIView):
             elif (datechoice == 2):
                 date = datetime.date.today() + datetime.timedelta(days=-2)
                 delaystatus = True
-            userid = request.data['username']
+            # userid = request.data['username']
             wordnumber = request.data['new_danci']
             fill_blank_number = request.data['new_blank']
             readpercent = request.data['new_read']
@@ -588,7 +589,7 @@ class creategredetailinfo(views.APIView):
             ieltsblankPicset = request.data['upImgArr_blank']
             ieltsblankPath = 'upload/gre/blank/'
 
-            user = UserProFile.objects.get(username=userid)
+            user = request.user
             print(date)
             older = greModel.objects.filter(user=user, signdate=date)
             if older:
@@ -804,7 +805,7 @@ class creategmatdetailinfo(views.APIView):
             elif (datechoice == 2):
                 date = datetime.date.today() + datetime.timedelta(days=-2)
                 delaystatus = True
-            userid = request.data['username']
+            # userid = request.data['username']
             wordnumber = request.data['new_danci']
             grammarnumber = request.data['new_grammar']
             readpercent = request.data['new_read']
@@ -830,7 +831,8 @@ class creategmatdetailinfo(views.APIView):
             ieltsgrammarPicset = request.data['upImgArr_grammar']
             ieltsgrammarPath = 'upload/gmat/grammar/'
 
-            user = UserProFile.objects.get(username=userid)
+            # user = UserProFile.objects.get(username=userid)
+            user = request.user
             print(date)
             older = gmatModel.objects.filter(user=user, signdate=date)
             if older:
