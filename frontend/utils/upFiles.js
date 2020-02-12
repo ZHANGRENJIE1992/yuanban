@@ -9,7 +9,7 @@ var chooseImage = (t, count, uploadindex) =>{
               var imgArr = t.data.upImgArr || [];
               let arr = res.tempFiles;
               
-              console.log(2, res.tempFiles)
+              //console.log(2, res.tempFilePaths[0])
               //console.log(t)
               arr.map(function(v,i){
                   wx.getFileSystemManager().readFile({
@@ -26,6 +26,7 @@ var chooseImage = (t, count, uploadindex) =>{
               t.setData({
                   upImgArr: imgArr
               })
+              console.log("111", imgArr)
               let upFilesArr = getPathArr(t);
               if (upFilesArr.length > count-1) {
                   let imgArr = t.data.upImgArr;

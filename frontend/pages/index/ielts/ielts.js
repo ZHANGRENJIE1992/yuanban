@@ -3,6 +3,7 @@ var upFiles = require('../../../utils/upFiles.js')
 var Re = require("../../../utils/re.js");
 var Request = require("../../../utils/request.js");
 var Api = require("../../../api/api.js")
+var Httpcovert = require("../../../utils/httpcovert.js")
 
 const app = getApp()
 Page({
@@ -48,13 +49,19 @@ Page({
     var _this = this
 
     Request.request(Api.Ieltsgetinfo,'','GET').then(function(res){
-      console.log("kangkang",res)
+
+      res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+      res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+      res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+      res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+      res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+    
+      console.log("kangkangba", res.data)
+
       _this.setData(res.data)
     })
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {
-        //Ieltsgetinfo
-        //that.setData(res.data)
         _this.data.username = res.data.username
       })
   },
