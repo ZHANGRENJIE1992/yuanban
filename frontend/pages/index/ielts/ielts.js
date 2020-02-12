@@ -189,7 +189,7 @@ Page({
           let upFilesArr_read = upFiles.getPathArr(_this);
           if (upFilesArr_read.length < _this.data.maxUploadLen) {
             _this.setData({
-              upFilesBtn: true,
+              upFilesBtn_read: true,
             })
           }
         } else if (res.cancel) {
@@ -233,7 +233,7 @@ Page({
           let upFilesArr_write = upFiles.getPathArr(_this);
           if (upFilesArr_write.length < _this.data.maxUploadLen) {
             _this.setData({
-              upFilesBtn: true,
+              upFilesBtn_write: true,
             })
           }
         } else if (res.cancel) {
@@ -277,7 +277,7 @@ Page({
           let upFilesArr_listen = upFiles.getPathArr(_this);
           if (upFilesArr_listen.length < _this.data.maxUploadLen) {
             _this.setData({
-              upFilesBtn: true,
+              upFilesBtn_listen: true,
             })
           }
         } else if (res.cancel) {
@@ -321,7 +321,7 @@ Page({
           let upFilesArr_speak = upFiles.getPathArr(_this);
           if (upFilesArr_speak.length < _this.data.maxUploadLen) {
             _this.setData({
-              upFilesBtn: true,
+              upFilesBtn_speak: true,
             })
           }
         } else if (res.cancel) {
