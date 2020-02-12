@@ -20,7 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('^users/', include('backendusers.urls')),
+    re_path('^users/', include('backendusers.urls',namespace='users')),
     re_path('^course/',include('course.urls')),
     #url('^users/', include('users.urls', namespace='users')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

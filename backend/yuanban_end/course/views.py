@@ -31,6 +31,7 @@ from yuanban_end.settings import IMAGES_URL
 from backendusers.models import UserProFile
 import shortuuid
 import traceback
+import base64
 # from users.Serializers import UserRegSerializer
 
 now = datetime.datetime.now()
@@ -48,7 +49,7 @@ class createieltsdetailinfo(views.APIView):
 
     def post(self, request):
         try:
-            datechoice = request.data['riqi_index']
+            datechoice = int(request.data['riqi_index'])
             print(request.data)
             # if (datechoice == 0):
             date = datetime.date.today()
@@ -67,75 +68,119 @@ class createieltsdetailinfo(views.APIView):
             # 雅思单词图片组
             ieltswordPicset = request.data['upImgArr']
             print(ieltswordPicset)
-            ieltswordPath = os.path.join(BASE_DIR, 'upload/ielts/word/')
+            # ieltswordPath = os.path.join(BASE_DIR, 'media/upload/ielts/word/')
+            ieltswordPath = 'upload/ielts/word/'
             # 雅思阅读图片组
             ieltsreadPicset = request.data['upImgArr_read']
-            ieltsreadPath = os.path.join(BASE_DIR, 'upload/ielts/read/')
+            ieltsreadPath = 'upload/ielts/read/'
             # 雅思写作图片组
             ieltswritePicset = request.data['upImgArr_write']
-            ieltswritePath = os.path.join(BASE_DIR, 'upload/ielts/write/')
+            ieltswritePath = 'upload/ielts/write/'
             # 雅思听力图片组
             ieltslistenPicset = request.data['upImgArr_listen']
-            ieltslistenPath = os.path.join(BASE_DIR, 'upload/ielts/listen/')
+            ieltslistenPath = 'upload/ielts/listen/'
             # 雅思口语图片组
             ieltsspeakPicset = request.data['upImgArr_speak']
-            ieltsspeakPath = os.path.join(BASE_DIR, 'upload/ielts/speak/')
+            ieltsspeakPath = 'upload/ielts/speak/'
 
             ieltsdetail = ieltsModel()
             user = UserProFile.objects.get(username=userid)
-
+            print(date)
             ieltsdetail.user = user
             ieltsdetail.signdate = date
             ieltsdetail.buqianstatus = delaystatus
             ieltsdetail.wordnumber = wordnumber
             ieltsdetail.readpercent = readpercent
             ieltsdetail.listenpercent = listenpercent
-            wordimageset = ''
+            wordimageset = []
             for item in ieltswordPicset:
                 ieltswordname = ieltswordPath + createuuid() + ".png"
                 # image = Image.open(BytesIO(item.content))
-                image = Image.open(item['path'])
-                print(555)
-                print(type(image))
-                image.save(ieltswordname)
-                wordimageset = wordimageset + ',' + ieltswordname
-            ieltsdetail.wordimageset = wordimageset
+                # image = Image.open(item['base64'])
+                imgdata = base64.b64decode(item['base64'])
+                impath = os.path.join(BASE_DIR, 'media/', ieltswordname)
+                file = open(impath, 'wb')
+                file.write(imgdata)
+                file.close()
+                # print(555)
+                # print(type(image))
+                # image.save(ieltswordname)
+                wordimageset.append(ieltswordname)
+            if wordimageset:
+                if len(wordimageset) == 1:
+                    ieltsdetail.wordimageset = wordimageset[0]
+                else:
+                    ieltsdetail.wordimageset = ','.join(wordimageset)
+            else:
+                    ieltsdetail.wordimageset = ''
 
-            readimageset = ''
+            readimageset = []
             for item in ieltsreadPicset:
                 ieltsreadname = ieltsreadPath + createuuid() + ".png"
-                # image = Image.open(BytesIO(item.content))
-                image = Image.open(item['path'])
-                image.save(ieltsreadname)
-                readimageset = readimageset + ',' + ieltsreadname
-            ieltsdetail.readimageset = readimageset
+                imgdata = base64.b64decode(item['base64'])
+                impath = os.path.join(BASE_DIR, 'media/', ieltsreadname)
+                file = open(impath, 'wb')
+                file.write(imgdata)
+                file.close()
+                readimageset.append(ieltsreadname)
+            # ieltsdetail.readimageset = ','.join(readimageset)
+            if readimageset:
+                if len(readimageset) == 1:
+                    ieltsdetail.readimageset = readimageset[0]
+                else:
+                    ieltsdetail.readimageset = ','.join(readimageset)
+            else:
+                ieltsdetail.readimageset = ''
 
-            writeimageset = ''
+            writeimageset = []
             for item in ieltswritePicset:
                 ieltswritename = ieltswritePath + createuuid() + ".png"
-                # image = Image.open(BytesIO(item.content))
-                image = Image.open(item['path'])
-                image.save(ieltswritename)
-                writeimageset = writeimageset + ',' + ieltswritename
-            ieltsdetail.writeimageset = writeimageset
+                imgdata = base64.b64decode(item['base64'])
+                impath = os.path.join(BASE_DIR, 'media/', ieltswritename)
+                file = open(impath, 'wb')
+                file.write(imgdata)
+                file.close()
+                writeimageset.append(ieltswritename)
+            if writeimageset:
+                if len(writeimageset) == 1:
+                    ieltsdetail.writeimageset = writeimageset[0]
+                else:
+                    ieltsdetail.writeimageset = ','.join(writeimageset)
+            else:
+                ieltsdetail.writeimageset = ''
 
-            listenimageset = ''
+            listenimageset = []
             for item in ieltslistenPicset:
                 ieltslistenname = ieltslistenPath + createuuid() + ".png"
-                # image = Image.open(BytesIO(item.content))
-                image = Image.open(item['path'])
-                image.save(ieltslistenname)
-                listenimageset = listenimageset + ',' + ieltslistenname
-            ieltsdetail.listenimageset = listenimageset
-
-            speakimageset = ''
+                imgdata = base64.b64decode(item['base64'])
+                impath = os.path.join(BASE_DIR, 'media/', ieltslistenname)
+                file = open(impath, 'wb')
+                file.write(imgdata)
+                file.close()
+                listenimageset.append(ieltslistenname)
+            if listenimageset:
+                if len(listenimageset) == 1:
+                    ieltsdetail.listenimageset = listenimageset[0]
+                else:
+                    ieltsdetail.listenimageset = ','.join(listenimageset)
+            else:
+                ieltsdetail.listenimageset = ''
+            speakimageset = []
             for item in ieltsspeakPicset:
-                ieltsspeakname = ieltsspeakPath + + createuuid() + ".png"
-                # image = Image.open(BytesIO(item.content))
-                image = Image.open(item['path'])
-                image.save(ieltsspeakname)
-                speakimageset = speakimageset + ',' + ieltsspeakname
-            ieltsdetail.speakimageset = speakimageset
+                ieltsspeakname = ieltsspeakPath + createuuid() + ".png"
+                imgdata = base64.b64decode(item['base64'])
+                impath = os.path.join(BASE_DIR, 'media/', ieltsspeakname)
+                file = open(impath, 'wb')
+                file.write(imgdata)
+                file.close()
+                speakimageset.append(ieltsspeakname)
+            if speakimageset:
+                if len(speakimageset) == 1:
+                    ieltsdetail.speakimageset = speakimageset[0]
+                else:
+                    ieltsdetail.speakimageset = ','.join(speakimageset)
+            else:
+                ieltsdetail.speakimageset = ''
 
             ieltsdetail.save()
         except Exception as e:
