@@ -51,6 +51,7 @@ class createieltsdetailinfo(views.APIView):
 
     def post(self, request):
         try:
+
             datechoice = int(request.data['riqi_index'])
             print(request.data)
             # if (datechoice == 0):
@@ -85,9 +86,13 @@ class createieltsdetailinfo(views.APIView):
             ieltsspeakPicset = request.data['upImgArr_speak']
             ieltsspeakPath = 'upload/ielts/speak/'
 
-            ieltsdetail = ieltsModel()
             user = UserProFile.objects.get(username=userid)
             print(date)
+            older = ieltsModel.objects.filter(user=user, signdate=date)
+            if older:
+                ieltsdetail = older[0]
+            else:
+                ieltsdetail = ieltsModel()
             ieltsdetail.user = user
             ieltsdetail.signdate = date
             ieltsdetail.buqianstatus = delaystatus
