@@ -16,16 +16,18 @@ Including another URLconf
 #from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 
-from .views import createieltsdetailinfo
+from .views import createieltsdetailinfo, Getieltsdetailinfo, GetIeltsList
 
 from django.conf.urls import url, include
+from django.urls import path,include,re_path
 
 router = DefaultRouter()
 router.register(r'course', createieltsdetailinfo, basename='coursedetailinfo')  #ielts 基础信息
 
 urlpatterns = [
     #url(r'^', include(router.urls)),
-    url('^ielts/Create/', createieltsdetailinfo.as_view(), name='createieltscourse'),
-    #url('onebook/', csrf_exempt(views.OneBookView.as_view()), name='onebook'),
+    re_path('^ielts/Create/', createieltsdetailinfo.as_view(), name='createieltscourse'),
+    re_path('^GetIelts/', Getieltsdetailinfo.as_view(), name='GetIelts'),  # 用户
+    re_path('^GetIelts/list/', GetIeltsList.as_view(), name='GetIeltList'),  # 用户
     #url('allbook/', csrf_exempt(views.AllBook.as_view()), name='allbook'),
 ]

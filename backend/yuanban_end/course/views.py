@@ -27,11 +27,12 @@ from rest_framework_jwt.settings import api_settings
 from yuanban_end.sys_info import MINI_APP_ID, MINI_APP_SECRET
 from .models import ieltsModel
 from yuanban_end.settings import BASE_DIR
-from yuanban_end.settings import IMAGES_URL
+from yuanban_end.settings import IMAGES_URL, MEDIA_URL
 from backendusers.models import UserProFile
 import shortuuid
 import traceback
 import base64
+import calendar
 # from users.Serializers import UserRegSerializer
 
 now = datetime.datetime.now()
@@ -39,6 +40,7 @@ now = datetime.datetime.now()
 
 def createuuid():
     return shortuuid.uuid()
+
 
 class createieltsdetailinfo(views.APIView):
     '''
@@ -197,6 +199,129 @@ class createieltsdetailinfo(views.APIView):
             print("10000")
             return Response(status=status.HTTP_201_CREATED)
 
+
+class Getieltsdetailinfo(views.APIView):
+    '''
+    修改和获取打卡信息
+    '''
+    authentication_classes = (authentication.SessionAuthentication, JSONWebTokenAuthentication)  # Token验证
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+
+    def get(self, request):
+        '''
+        获取用户信息
+        :param request:
+        :return:
+        '''
+        dateinfo = request.data.get('date', None)
+        user = self.request.user
+        if not dateinfo:
+            dateinfo = datetime.date.today()
+        else:
+            dateinfo = datetime.datetime.strptime(dateinfo, '%Y-%m-%d').date()
+        ielts = ieltsModel.objects.get(user=user, signdate=dateinfo)
+        ielts_info = {
+            'new_danci': ielts.wordnumber,
+            'new_read': ielts.readpercent,
+            'new_listen': ielts.listenpercent,
+            'upImgArr': [IMAGES_URL + MEDIA_URL + w for w in ielts.wordimageset],
+            'upImgArr_read': [IMAGES_URL + MEDIA_URL + r for r in ielts.readimageset],
+            'upImgArr_listen': [IMAGES_URL + MEDIA_URL + l for l in ielts.listenimageset],
+            'upImgArr_write': [IMAGES_URL + MEDIA_URL + wr for wr in ielts.writeimageset],
+            'upImgArr_speak': [IMAGES_URL + MEDIA_URL + s for s in ielts.speakimageset],
+            'signdate': datetime.date.strftime(ielts.signdate, "%Y-%m-%d"),
+            'buqianstatus': ielts.buqianstatus,
+            'username': user.name
+        }
+        return Response(ielts_info, status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        '''
+        修改用户个人信息
+        :param request:
+        :return:
+        '''
+        try:
+            type = request.data['types']
+        except:
+            type = None
+        # if (type != None) and (image_files != None):
+        if type == 'GHTX':
+            image_files = request.data['file']
+            self.request.user.avatar = image_files
+            self.request.user.save()
+            return Response(status=status.HTTP_200_OK)
+        elif type == 'GHBJ':
+            image_files = request.data['file']
+            print("打印:", image_files)
+            self.request.user.background = image_files
+            self.request.user.save()
+            return Response(status=status.HTTP_200_OK)
+        elif type == 'GHXB':
+            self.request.user.gender = request.data['new_shengri']
+            self.request.user.save()
+            return Response(status=status.HTTP_200_OK)
+        elif type == 'GHSRI':
+            self.request.user.birthay = request.data['sr']
+            self.request.user.save()
+            return Response(status=status.HTTP_200_OK)
+        elif type == 'GHNAME':
+            name_all = UserProFile.objects.filter(name=request.data['new_name'])
+            if name_all:
+                return Response({'message': '昵称已存在'}, status=status.HTTP_202_ACCEPTED)
+            self.request.user.name = request.data['new_name']
+            self.request.user.save()
+            return Response({'message': '昵称更改成功'}, status=status.HTTP_200_OK)
+        elif type == 'GHPHONE':
+            phone_all = UserProFile.objects.filter(mobile=request.data['new_phone'])
+            if phone_all:
+                return Response({'message': '手机号已存在'}, status=status.HTTP_202_ACCEPTED)
+            self.request.user.mobile = request.data['new_phone']
+            self.request.user.save()
+            return Response({'message': '手机号已更换'}, status=status.HTTP_200_OK)
+        elif type == 'thesignature':
+            self.request.user.thesignature = request.data['new_thesignature']
+            self.request.user.save()
+            return Response({'message': '签名已更新'}, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class GetIeltsList(views.APIView):
+    '''
+    修改和获取打卡周期信息
+    '''
+    authentication_classes = (authentication.SessionAuthentication, JSONWebTokenAuthentication)  # Token验证
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+
+    def get(self, request):
+        user = self.request.user
+        monthinfo = request.data.get('month', None)
+        if not monthinfo:
+            dateinfo = datetime.date.today()
+            last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
+        else:
+            year, month = monthinfo.split('-')
+            last = calendar.monthrange(year, month)[1]
+            dateinfo = datetime.datetime.strptime(monthinfo, '%Y-%m').date()
+        fistday = dateinfo.replace(day=1)
+        lastday = dateinfo.replace(day=last)
+        ies = ieltsModel.objects.filter(user=user, signdate__lte=lastday, signdate__gte=fistday)
+        res = {}
+        data = []
+        for i in range(1, last+1):
+            info = {
+                'date': datetime.date.strftime((dateinfo.replace(day=i)), "%Y-%m-%d"),
+                'sign': 0
+                    }
+            for row in ies:
+                if row.signdate == dateinfo.replace(day=i):
+                    info['sign'] = 1
+                    break
+            data.append(info)
+        res['data'] = data
+        res['type'] = 'ielts'
+
+        return Response(res, status=status.HTTP_200_OK)
 
 
 
