@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e35fe7-5489-4a3e-aafe-cd4a9aab2044" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.69550174">
+    <splitter split-orientation="horizontal" split-proportion="0.55093724">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="false">
@@ -26,26 +28,13 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+                <state relative-caret-position="316">
+                  <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
                   <folding>
                     <element signature="e#671#719#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="210" column="7" lean-forward="true" selection-start-line="210" selection-start-column="7" selection-end-line="210" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                    <element signature="e#9582#11753#0" />
                   </folding>
                 </state>
               </provider>
@@ -55,7 +44,7 @@
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="260">
-                  <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
+                  <caret line="182" selection-start-line="182" selection-end-line="182" />
                   <folding>
                     <element signature="e#312#321#0" expanded="true" />
                   </folding>
@@ -88,8 +77,11 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-176">
-                  <caret column="22" selection-start-column="22" selection-end-column="22" />
+                <state relative-caret-position="88">
+                  <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+                  <folding>
+                    <element signature="e#0#22#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -106,8 +98,11 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="206">
-                  <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" selection-end-column="44" />
+                <state relative-caret-position="140">
+                  <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#671#719#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -116,13 +111,38 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="286">
-                  <caret line="16" column="12" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="12" />
+                <state relative-caret-position="126">
+                  <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
                   <folding>
                     <element signature="e#0#22#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="307">
+                  <caret line="1010" column="17" selection-start-line="1010" selection-start-column="6" selection-end-line="1010" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                    <element signature="e#1539#7301#0" />
+                    <element signature="e#7352#14600#0" />
+                    <element signature="e#14651#15512#0" />
+                    <element signature="e#15560#17005#0" />
+                    <element signature="e#17053#18498#0" />
+                    <element signature="e#18540#19892#0" />
+                    <element signature="e#19934#21286#0" />
+                    <element signature="e#21335#28447#0" />
+                    <element signature="e#28493#29984#0" />
+                    <element signature="e#30024#31372#0" />
+                    <element signature="e#31422#39359#0" />
+                    <element signature="e#39406#41028#0" />
+                    <element signature="e#41069#42419#0" />
                   </folding>
                 </state>
               </provider>
@@ -149,10 +169,10 @@
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/Serializers.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py" />
-        <option value="$PROJECT_DIR$/backend/yuanban_end/course/models.py" />
         <option value="$PROJECT_DIR$/frontend/api/api.js" />
-        <option value="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/course/models.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/views.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" />
       </list>
     </option>
   </component>
@@ -260,19 +280,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581421758656</updated>
-      <workItem from="1581421762503" duration="20947000" />
+      <workItem from="1581421762503" duration="27027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20947000" />
+    <option name="totallyTimeSpent" value="27027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17191978" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12106017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -352,13 +372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/rest_framework/status.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -383,7 +396,7 @@
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
           <folding>
             <element signature="e#312#321#0" expanded="true" />
           </folding>
@@ -401,17 +414,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="88">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+        <state relative-caret-position="140">
+          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
           <folding>
             <element signature="e#671#719#0" expanded="true" />
           </folding>
@@ -430,11 +446,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="210" column="7" lean-forward="true" selection-start-line="210" selection-start-column="7" selection-end-line="210" selection-end-column="7" />
+        <state relative-caret-position="307">
+          <caret line="1010" column="17" selection-start-line="1010" selection-start-column="6" selection-end-line="1010" selection-end-column="17" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#9582#11753#0" />
+            <element signature="e#1539#7301#0" />
+            <element signature="e#7352#14600#0" />
+            <element signature="e#14651#15512#0" />
+            <element signature="e#15560#17005#0" />
+            <element signature="e#17053#18498#0" />
+            <element signature="e#18540#19892#0" />
+            <element signature="e#19934#21286#0" />
+            <element signature="e#21335#28447#0" />
+            <element signature="e#28493#29984#0" />
+            <element signature="e#30024#31372#0" />
+            <element signature="e#31422#39359#0" />
+            <element signature="e#39406#41028#0" />
+            <element signature="e#41069#42419#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+          <folding>
+            <element signature="e#671#719#0" expanded="true" />
           </folding>
         </state>
       </provider>

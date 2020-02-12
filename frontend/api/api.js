@@ -14,10 +14,12 @@ var GetUser = host + '/users/GetUser/'
 
 var Ieltssubmitinfo = host + '/course/ielts/Create/'
 
+var Ieltsgetinfo = host + '/course/GetIelts/'
 
 module.exports = {
   login: login,
   GetUser: GetUser,
   Registered: Registered,
-  Ieltssubmitinfo, Ieltssubmitinfo,
+  Ieltssubmitinfo: Ieltssubmitinfo,
+  Ieltsgetinfo: Ieltsgetinfo,
 }

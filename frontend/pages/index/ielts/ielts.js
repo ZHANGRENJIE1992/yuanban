@@ -44,10 +44,16 @@ Page({
    */
   onLoad: function (options) {
     // 获取个人信息
+
     var _this = this
+
+    Request.request(Api.Ieltsgetinfo,'','GET').then(function(res){
+      console.log("kangkang",res)
+      _this.setData(res.data)
+    })
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {
-        //console.log(res)
+        //Ieltsgetinfo
         //that.setData(res.data)
         _this.data.username = res.data.username
       })
@@ -440,6 +446,15 @@ Page({
   subFormData: function () {
     var _this = this
     console.log(_this.data)
+    if (_this.data.new_danci === null){
+      _this.data.new_danci= 0
+    }
+    if (_this.data.new_listen === null){ 
+      _this.data.new_listen = 0
+    }
+    if (_this.data.new_read === null) {
+      _this.data.new_read = 0
+    }
     Request.request(Api.Ieltssubmitinfo, _this.data, 'POST').then(function(res){
       if(res.statusCode == 200){
         console.log("ielts success!")       
