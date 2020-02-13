@@ -422,7 +422,7 @@ class Getieltsdetailinfo(views.APIView):
         if ielts:
             ielts = ielts[0]
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -465,7 +465,7 @@ class Gettoefldetailinfo(views.APIView):
         if ielts:
             ielts = ielts[0]
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -748,7 +748,7 @@ class Getgredetailinfo(views.APIView):
         if ielts:
             ielts = ielts[0]
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -1014,7 +1014,7 @@ class Getgmatdetailinfo(views.APIView):
         if ielts:
             ielts = ielts[0]
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
