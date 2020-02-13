@@ -4,6 +4,7 @@ var Re = require("../../../utils/re.js");
 var Request = require("../../../utils/request.js");
 var Api = require("../../../api/api.js")
 var Httpcovert = require("../../../utils/httpcovert.js")
+var Format = require("../../../utils/datetime.js")
 
 const app = getApp()
 Page({
@@ -11,6 +12,7 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     dancihiddeninput:true,
     readhiddeninput: true,
@@ -37,7 +39,8 @@ Page({
     new_danci:null,
     new_read:null,
     new_listen:null,
-    username:null
+    username:null,
+    s:null
   },
 
   /**
@@ -47,16 +50,22 @@ Page({
     // 获取个人信息
 
     var _this = this
-
-    Request.request(Api.Ieltsgetinfo,'','GET').then(function(res){
-
+    console.log("kakngkangkag",options)
+    var arr = Object.keys(options);
+    if (arr.length == 0){
+      options = new Date()
+      options = options.getFullYear() + "-" + (options.getMonth() + 1) + "-" + options.getDate();
+      _this.data.s = options
+    }
+    Request.request(Api.Ieltsgetinfo, {date:options},'GET').then(function(res){
+      console.log("kangkangba", res.data)
       res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
       res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
       res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
       res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
       res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
     
-      console.log("kangkangba", res.data)
+      
 
       _this.setData(res.data)
     })
@@ -64,6 +73,7 @@ Page({
       .then(function (res) {
         _this.data.username = res.data.username
       })
+    
   },
 
   /**
@@ -345,10 +355,82 @@ Page({
   },
 
   riqi:function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
+    var _this = this
+    var requestdata = {}
+
+    if (e.detail.value === "0"){
+      
+      var today = new Date();
+      today.setTime(today.getTime());
+      var s1 = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+      requestdata['date'] = s1
+      _this.setData({
+        s: s1,
+      })
+      console.log('picker发送选择改变，携带值为', requestdata)
+      Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
+        console.log("kangkangba", res.data)
+        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+
+        console.log("kangkangba", res.data)
+
+        _this.setData(res.data)
+      })
+
+    }
+    if (e.detail.value === "1"){
+      console.log('picker发送选择改变，携带值为', e.detail.value)
+      var yesterday = new Date();
+      var s2 = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + (yesterday.getDate()-1);
+      requestdata['date'] = s2
+      _this.setData({
+        s: s2,
+      })
+      console.log('picker发送选择改变，携带值为', requestdata)
+      Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
+        console.log("kangkangba", res.data)
+        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+
+        console.log("kangkangba", res.data)
+
+        _this.setData(res.data)
+      })
+
+    }
+    if (e.detail.value === "2"){
+      console.log('picker发送选择改变，携带值为', e.detail.value)
+      var twodaysbefore = new Date();
+      var s3 = twodaysbefore.getFullYear() + "-" + (twodaysbefore.getMonth() + 1) + "-" + (twodaysbefore.getDate()-2);
+      _this.setData({
+        s: s3,
+      })
+      Request.request(Api.Ieltsgetinfo, {
+        date: s3
+      }, 'GET').then(function (res) {
+        console.log(res)
+        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+
+        console.log("kangkangba", res.data)
+
+        _this.setData(res.data)
+      })
+    }
+
+    _this.setData({
       riqi_index: e.detail.value,
-      date: e.detail.value   
+      date: e.detail.value
     })
   },
   // 选择图片或者视频单词
@@ -466,8 +548,9 @@ Page({
       if(res.statusCode == 200){
         console.log("ielts success!")       
       }
-      _this.onLoad()
+      _this.onLoad(_this.data.s)
     })
 
-  }
+  },
+  
 })

@@ -409,7 +409,10 @@ class Getieltsdetailinfo(views.APIView):
         :param request:
         :return:
         '''
-        dateinfo = request.data.get('date', None)
+        #print(request.GET('date'))
+        dateinfo = request.GET.get('date', None)#修改前写的方法
+        #dateinfo = request.GET['date']
+        print(dateinfo)
         user = self.request.user
         if not dateinfo:
             dateinfo = datetime.date.today()

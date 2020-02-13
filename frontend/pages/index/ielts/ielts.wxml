@@ -43,7 +43,7 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view name='upImgArr' class='uploadimgbox' wx:for="{{upImgArr}}" wx:key="item">
+      <view name='upImgArr' class='uploadimgbox' wx:if="{{upImgArr.length >0}}" wx:for="{{upImgArr}}" wx:key="item">
           <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%

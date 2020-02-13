@@ -16,7 +16,7 @@ var chooseImage = (t, count, uploadindex) =>{
                     filePath: res.tempFilePaths[i], //选择图片返回的相对路径
                     encoding: 'base64', //编码格式
                     success: res => { //成功的回调
-                      console.log('data:image/png;base64,' + res.data)
+                      //console.log('data:image/png;base64,' + res.data)
                       v['base64'] = res.data;
                     }
                   })
