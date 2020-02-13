@@ -418,7 +418,11 @@ class Getieltsdetailinfo(views.APIView):
             dateinfo = datetime.date.today()
         else:
             dateinfo = datetime.datetime.strptime(dateinfo, '%Y-%m-%d').date()
-        ielts = ieltsModel.objects.get(user=user, signdate=dateinfo)
+        ielts = ieltsModel.objects.filter(user=user, signdate=dateinfo)
+        if ielts:
+            ielts = ielts[0]
+        else:
+            return Response(status=status.HTTP_200_OK)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -432,6 +436,8 @@ class Getieltsdetailinfo(views.APIView):
             'buqianstatus': ielts.buqianstatus,
             'username': user.name
         }
+        print(6666666666666666666)
+        print(ielts_info)
         return Response(ielts_info, status=status.HTTP_200_OK)
 
 
@@ -448,13 +454,18 @@ class Gettoefldetailinfo(views.APIView):
         :param request:
         :return:
         '''
-        dateinfo = request.data.get('date', None)
+        dateinfo = request.GET.get('date', None)
         user = self.request.user
         if not dateinfo:
             dateinfo = datetime.date.today()
         else:
             dateinfo = datetime.datetime.strptime(dateinfo, '%Y-%m-%d').date()
-        ielts = toeflModel.objects.get(user=user, signdate=dateinfo)
+        # ielts = toeflModel.objects.get(user=user, signdate=dateinfo)
+        ielts = toeflModel.objects.filter(user=user, signdate=dateinfo)
+        if ielts:
+            ielts = ielts[0]
+        else:
+            return Response(status=status.HTTP_200_OK)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -480,7 +491,7 @@ class GetIeltsList(views.APIView):
 
     def get(self, request):
         user = self.request.user
-        monthinfo = request.data.get('month', None)
+        monthinfo = request.GET.get('month', None)
         if not monthinfo:
             dateinfo = datetime.date.today()
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
@@ -518,7 +529,7 @@ class GetToeflList(views.APIView):
 
     def get(self, request):
         user = self.request.user
-        monthinfo = request.data.get('month', None)
+        monthinfo = request.GET.get('month', None)
         if not monthinfo:
             dateinfo = datetime.date.today()
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
@@ -726,13 +737,18 @@ class Getgredetailinfo(views.APIView):
         :param request:
         :return:
         '''
-        dateinfo = request.data.get('date', None)
+        dateinfo = request.GET.get('date', None)
         user = self.request.user
         if not dateinfo:
             dateinfo = datetime.date.today()
         else:
             dateinfo = datetime.datetime.strptime(dateinfo, '%Y-%m-%d').date()
-        ielts = greModel.objects.get(user=user, signdate=dateinfo)
+        # ielts = greModel.objects.get(user=user, signdate=dateinfo)
+        ielts = greModel.objects.filter(user=user, signdate=dateinfo)
+        if ielts:
+            ielts = ielts[0]
+        else:
+            return Response(status=status.HTTP_200_OK)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -759,7 +775,7 @@ class GetGreList(views.APIView):
 
     def get(self, request):
         user = self.request.user
-        monthinfo = request.data.get('month', None)
+        monthinfo = request.GET.get('month', None)
         if not monthinfo:
             dateinfo = datetime.date.today()
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
@@ -987,13 +1003,18 @@ class Getgmatdetailinfo(views.APIView):
         :param request:
         :return:
         '''
-        dateinfo = request.data.get('date', None)
+        dateinfo = request.GET.get('date', None)
         user = self.request.user
         if not dateinfo:
             dateinfo = datetime.date.today()
         else:
             dateinfo = datetime.datetime.strptime(dateinfo, '%Y-%m-%d').date()
-        ielts = gmatModel.objects.get(user=user, signdate=dateinfo)
+        # ielts = gmatModel.objects.get(user=user, signdate=dateinfo)
+        ielts = gmatModel.objects.filter(user=user, signdate=dateinfo)
+        if ielts:
+            ielts = ielts[0]
+        else:
+            return Response(status=status.HTTP_200_OK)
         ielts_info = {
             'new_danci': ielts.wordnumber,
             'new_read': ielts.readpercent,
@@ -1022,7 +1043,7 @@ class GetGmatList(views.APIView):
 
     def get(self, request):
         user = self.request.user
-        monthinfo = request.data.get('month', None)
+        monthinfo = request.GET.get('month', None)
         if not monthinfo:
             dateinfo = datetime.date.today()
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
