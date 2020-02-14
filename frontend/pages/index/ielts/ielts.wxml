@@ -43,8 +43,8 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view name='upImgArr' class='uploadimgbox' wx:if="{{upImgArr.length >0}}" wx:for="{{upImgArr}}" wx:key="item">
-          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
+      <view name='upImgArr' class='uploadimgbox'  wx:for="{{path_upImgArr}}" wx:key="item">
+          <image class='uploadimg'wx:if="{{loadfinish}}" bindload="imageLoad" binderror="imageOnloadError" src='{{item}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%
           </cover-view>
@@ -61,8 +61,8 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view class='uploadimgbox' wx:for="{{upImgArr_read}}" wx:key="item">
-          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_read' mode='aspectFill'></image>
+      <view class='uploadimgbox' wx:for="{{path_upImgArr_read}}" wx:key="item">
+          <image class='uploadimg' src='{{item}}' data-presrc="{{item.path}}" bindtap='previewImg_read' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%
           </cover-view>
@@ -78,8 +78,8 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view class='uploadimgbox' wx:for="{{upImgArr_write}}" wx:key="item">
-          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_write' mode='aspectFill'></image>
+      <view class='uploadimgbox' wx:for="{{path_upImgArr_write}}" wx:key="item">
+          <image class='uploadimg' src='{{item}}' data-presrc="{{item.path}}" bindtap='previewImg_write' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%
           </cover-view>
@@ -95,8 +95,8 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view class='uploadimgbox' wx:for="{{upImgArr_listen}}" wx:key="item">
-          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_listen' mode='aspectFill'></image>
+      <view class='uploadimgbox' wx:for="{{path_upImgArr_listen}}" wx:key="item">
+          <image class='uploadimg' src='{{item}}' data-presrc="{{item.path}}" bindtap='previewImg_listen' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%
           </cover-view>
@@ -113,8 +113,8 @@
       <view class='optContent'>上传图片</view>
     </view>
     <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-      <view class='uploadimgbox' wx:for="{{upImgArr_speak}}" wx:key="item">
-          <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg_speak' mode='aspectFill'></image>
+      <view class='uploadimgbox' wx:for="{{path_upImgArr_speak}}" wx:key="item">
+          <image class='uploadimg' src='{{item}}' data-presrc="{{item.path}}" bindtap='previewImg_speak' mode='aspectFill'></image>
           <cover-view class='progress' wx:if="{{upFilesProgress}}">
               {{item.progress}}%
           </cover-view>

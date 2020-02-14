@@ -30,7 +30,7 @@ function Httpcovert(t){
       //console.log(convertedarr)
     }
   }else{
-    convertedarr = t
+    convertedarr = []
   }
   return convertedarr
 }

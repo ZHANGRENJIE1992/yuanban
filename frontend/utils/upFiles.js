@@ -8,8 +8,12 @@ var chooseImage = (t, count, uploadindex) =>{
             if (uploadindex == 0){
               var imgArr = t.data.upImgArr || [];
               let arr = res.tempFiles;
-              
-              //console.log(2, res.tempFilePaths[0])
+              var temppath_imgArr = t.data.path_upImgArr || [];
+              var i =0;
+              for(i in arr){
+                temppath_imgArr.push(arr[i]['path'])
+              }
+
               //console.log(t)
               arr.map(function(v,i){
                   wx.getFileSystemManager().readFile({
@@ -22,12 +26,14 @@ var chooseImage = (t, count, uploadindex) =>{
                   })
                   v['progress'] = 0;               
                   imgArr.push(v)
+                 
               })
+              t.data.upImgArr = imgArr
               t.setData({
-                  upImgArr: imgArr
+                  path_upImgArr: temppath_imgArr
               })
               console.log("111", imgArr)
-              let upFilesArr = getPathArr(t);
+              /**let upFilesArr = getPathArr(t);
               if (upFilesArr.length > count-1) {
                   let imgArr = t.data.upImgArr;
                   let newimgArr = imgArr.slice(0, count)
@@ -35,29 +41,37 @@ var chooseImage = (t, count, uploadindex) =>{
                       upFilesBtn: false,
                       upImgArr: newimgArr
                   })
-              }
+              }**/
             }
             if (uploadindex == 1) {
               var imgArr_read = t.data.upImgArr_read || [];
               let arr_read = res.tempFiles;
+              var temppath_imgArr_read = t.data.path_upImgArr_read || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_read) {
+                temppath_imgArr_read.push(arr_read[i]['path'])
+              }
               //console.log(res)
-              //console.log(t)
+              console.log("imgArr_read是啥", t.data.upImgArr_read)
               arr_read.map(function (v, i) {
                 wx.getFileSystemManager().readFile({
-                  filePath: res.tempFilePaths[i], //选择图片返回的相对路径
+                  filePath: res.tempFilePaths[0], //选择图片返回的相对路径
                   encoding: 'base64', //编码格式
                   success: res => { //成功的回调
-                    console.log('data:image/png;base64,' + res.data)
+                    //console.log('data:image/png;base64,' + res.data)
                     v['base64'] = res.data;
                   }
                 })
                 v['progress'] = 0;
                 imgArr_read.push(v)
               })
-              t.setData({
-                upImgArr_read: imgArr_read
+              console.log("阅读图片集", temppath_imgArr_read)
+              t.data.upImgArr_read = imgArr_read
+              t.setData({      
+                path_upImgArr_read: temppath_imgArr_read
               })
-              let upFilesArr_read = getPathArr_ielts_read(t);
+              /**let upFilesArr_read = getPathArr_ielts_read(t);
               if (upFilesArr_read.length > count - 1) {
                 let imgArr_read = t.data.upImgArr_read;
                 let newimgArr_read = imgArr_read.slice(0, count)
@@ -65,30 +79,39 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_read: false,
                   upImgArr_read: newimgArr_read
                 })
-              }
+              }**/
             }
             if (uploadindex == 2) {
               var imgArr_write = t.data.upImgArr_write || [];
               let arr_write = res.tempFiles;
-              //console.log(res)
+              var temppath_imgArr_write = t.data.path_upImgArr_write || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_write) {
+                temppath_imgArr_write.push(arr_write[i]['path'])
+              }
+              console.log("原始write", t.data.upImgArr_write)
               //console.log(t)
               arr_write.map(function (v, i) {
                 wx.getFileSystemManager().readFile({
                   filePath: res.tempFilePaths[i], //选择图片返回的相对路径
                   encoding: 'base64', //编码格式
                   success: res => { //成功的回调
-                    console.log('data:image/png;base64,' + res.data)
+                    //console.log('data:image/png;base64,' + res.data)
                     v['base64'] = res.data;
                   }
                 })
                 v['progress'] = 0;
                 imgArr_write.push(v)
               })
+              t.data.upImgArr_write = imgArr_write
+              console.log("write:", imgArr_write)
               t.setData({
-                upImgArr_write: imgArr_write
+                path_upImgArr_write: temppath_imgArr_write
+
               })
 
-              let upFilesArr_write = getPathArr_ielts_write(t);
+              /**let upFilesArr_write = getPathArr_ielts_write(t);
               if (upFilesArr_write.length > count - 1) {
                 let imgArr_write = t.data.upImgArr_write;
                 let newimgArr_write = imgArr_write.slice(0, count)
@@ -96,11 +119,17 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_write: false,
                   upImgArr_write: newimgArr_write
                 })
-              }
+              }**/
             }
             if (uploadindex == 3) {
               var imgArr_listen = t.data.upImgArr_listen || [];
               let arr_listen = res.tempFiles;
+              var temppath_imgArr_listen = t.data.path_upImgArr_listen || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_listen) {
+                temppath_imgArr_listen.push(arr_listen[i]['path'])
+              }
               //console.log(res)
               //console.log(t)
               arr_listen.map(function (v, i) {
@@ -108,18 +137,20 @@ var chooseImage = (t, count, uploadindex) =>{
                   filePath: res.tempFilePaths[i], //选择图片返回的相对路径
                   encoding: 'base64', //编码格式
                   success: res => { //成功的回调
-                    console.log('data:image/png;base64,' + res.data)
+                    //console.log('data:image/png;base64,' + res.data)
                     v['base64'] = res.data;
                   }
                 })
                 v['progress'] = 0;
                 imgArr_listen.push(v)
               })
+              console.log("啥情况",imgArr_listen)
+              t.data.upImgArr_listen = imgArr_listen
               t.setData({
-                upImgArr_listen: imgArr_listen
+                path_upImgArr_listen: temppath_imgArr_listen
               })
 
-              let upFilesArr_listen = getPathArr_ielts_listen(t);
+              /**let upFilesArr_listen = getPathArr_ielts_listen(t);
               if (upFilesArr_listen.length > count - 1) {
                 let imgArr_listen = t.data.upImgArr_listen;
                 let newimgArr_listen = imgArr_listen.slice(0, count)
@@ -127,11 +158,17 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_listen: false,
                   upImgArr_listen: newimgArr_listen
                 })
-              }
+              }**/
             }
             if (uploadindex == 4) {
               var imgArr_speak = t.data.upImgArr_speak || [];
               let arr_speak = res.tempFiles;
+              var temppath_imgArr_speak = t.data.path_upImgArr_speak || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_speak) {
+                temppath_imgArr_speak.push(arr_speak[i]['path'])
+              }
               //console.log(res)
               //console.log(t)
               arr_speak.map(function (v, i) {
@@ -139,18 +176,20 @@ var chooseImage = (t, count, uploadindex) =>{
                   filePath: res.tempFilePaths[i], //选择图片返回的相对路径
                   encoding: 'base64', //编码格式
                   success: res => { //成功的回调
-                    console.log('data:image/png;base64,' + res.data)
+                    //console.log('data:image/png;base64,' + res.data)
                     v['base64'] = res.data;
                   }
                 })
                 v['progress'] = 0;
                 imgArr_speak.push(v)
               })
-              t.setData({
-                upImgArr_speak: imgArr_speak
+              console.log("查看你一下", imgArr_speak)
+              t.data.upImgArr_speak =  imgArr_speak
+              t.setData({         
+                path_upImgArr_speak: temppath_imgArr_speak
               })
 
-              let upFilesArr_speak = getPathArr_ielts_speak(t);
+              /**let upFilesArr_speak = getPathArr_ielts_speak(t);
               if (upFilesArr_speak.length > count - 1) {
                 let imgArr_speak = t.data.upImgArr_speak;
                 let newimgArr_speak = imgArr_speak.slice(0, count)
@@ -158,7 +197,7 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_speak: false,
                   upImgArr_speak: newimgArr_speak
                 })
-              }
+              }**/
             }
             if (uploadindex == 5) {
               var imgArr_gmat_word = t.data.upImgArr_gmat_word || [];
@@ -210,6 +249,8 @@ var chooseImage = (t, count, uploadindex) =>{
 
           },
       });
+
+  console.log("上传后的信息", t.data)  
     
 }
 

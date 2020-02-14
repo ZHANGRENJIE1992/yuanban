@@ -36,11 +36,17 @@ Page({
     upImgArr_write: [], 
     upImgArr_listen: [], 
     upImgArr_speak: [], 
+    path_upImgArr: [],
+    path_upImgArr_read: [],
+    path_upImgArr_write: [],
+    path_upImgArr_listen: [],
+    path_upImgArr_speak: [], 
     new_danci:null,
     new_read:null,
     new_listen:null,
     username:null,
-    s:null
+    s:null,
+    loadfinish: false,
   },
 
   /**
@@ -50,7 +56,7 @@ Page({
     // 获取个人信息
 
     var _this = this
-    console.log("kakngkangkag",options)
+    console.log("载入查看",options)
     var arr = Object.keys(options);
     if (arr.length == 0){
       options = new Date()
@@ -58,22 +64,30 @@ Page({
       _this.data.s = options
     }
     Request.request(Api.Ieltsgetinfo, {date:options},'GET').then(function(res){
-      console.log("kangkangba", res.data)
-      res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-      res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
-      res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-      res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
-      res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-    
-      
+      if(res.statusCode !== 204){
+        console.log("载入成功row", res.data)
+        _this.data.path_upImgArr = res.data.upImgArr
+        _this.data.path_upImgArr_read = res.data.upImgArr_read
+        _this.data.path_upImgArr_write = res.data.upImgArr_write
+        _this.data.path_upImgArr_listen = res.data.upImgArr_listen
+        _this.data.path_upImgArr_speak = res.data.upImgArr_speak
+        _this.data.new_danci = res.data.new_danci
+        _this.data.new_read = res.data.new_read
+        _this.data.new_listen = res.data.new_listen
 
-      _this.setData(res.data)
+        _this.setData(_this.data)
+        _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+        _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+        _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+        _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+        _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+
+
+        console.log("载入处理后", _this.data)
+      }
     })
-    Request.request(Api.GetUser, '', 'GET')
-      .then(function (res) {
-        _this.data.username = res.data.username
-      })
-    
+    _this.data.loadfinish = true
+    _this.setData(_this.data.loadfinish)
   },
 
   /**
@@ -87,7 +101,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -130,10 +143,10 @@ Page({
   previewImg: function (e) {
     let imgsrc = e.currentTarget.dataset.presrc;
     let _this = this;
-    let arr = _this.data.upImgArr;
+    let arr = _this.data.path_upImgArr;
     let preArr = [];
     arr.map(function (v, i) {
-      preArr.push(v.path)
+      preArr.push(v)
     })
     //   console.log(preArr)
     wx.previewImage({
@@ -152,11 +165,15 @@ Page({
           let delNum = e.currentTarget.dataset.index;
           let delType = e.currentTarget.dataset.type;
           let upImgArr = _this.data.upImgArr;
-          let upVideoArr = _this.data.upVideoArr;
+          let path_upImgArr = _this.data.path_upImgArr;
           if (delType == 'image') {
             upImgArr.splice(delNum, 1)
+            path_upImgArr.splice(delNum,1)
             _this.setData({
               upImgArr: upImgArr,
+            })
+            _this.setData({
+              path_upImgArr: path_upImgArr,
             })
           } else if (delType == 'video') {
             upVideoArr.splice(delNum, 1)
@@ -180,10 +197,10 @@ Page({
   previewImg_read: function (e) {
     let imgsrc_read = e.currentTarget.dataset.presrc;
     let _this = this;
-    let arr_read = _this.data.upImgArr_read;
+    let arr_read = _this.data.path_upImgArr_read;
     let preArr_read = [];
     arr_read.map(function (v, i) {
-      preArr_read.push(v.path)
+      preArr_read.push(v)
     })
     //   console.log(preArr)
     wx.previewImage({
@@ -202,11 +219,14 @@ Page({
           let delNum = e.currentTarget.dataset.index;
           let delType = e.currentTarget.dataset.type;
           let upImgArr_read = _this.data.upImgArr_read;
+          let path_upImgArr_read = _this.data.path_upImgArr_read;
           //let upVideoArr = _this.data.upVideoArr;
           if (delType == 'image') {
             upImgArr_read.splice(delNum, 1)
+            path_upImgArr_read.splice(delNum, 1)
             _this.setData({
               upImgArr_read: upImgArr_read,
+              path_upImgArr_read: path_upImgArr_read,
             })
           } 
           let upFilesArr_read = upFiles.getPathArr(_this);
@@ -225,10 +245,10 @@ Page({
   previewImg_write: function (e) {
     let imgsrc_write = e.currentTarget.dataset.presrc;
     let _this = this;
-    let arr_write = _this.data.upImgArr_write;
+    let arr_write = _this.data.path_upImgArr_write;
     let preArr_write = [];
     arr_write.map(function (v, i) {
-      preArr_write.push(v.path)
+      preArr_write.push(v)
     })
     //   console.log(preArr)
     wx.previewImage({
@@ -247,10 +267,13 @@ Page({
           let delNum = e.currentTarget.dataset.index;
           let delType = e.currentTarget.dataset.type;
           let upImgArr_write = _this.data.upImgArr_write;
+          let path_upImgArr_write = _this.data.path_upImgArr_write
           if (delType == 'image') {
             upImgArr_write.splice(delNum, 1)
+            path_upImgArr_write.splice(delNum, 1)
             _this.setData({
               upImgArr_write: upImgArr_write,
+              path_upImgArr_write: path_upImgArr_write,
             })
           }
           let upFilesArr_write = upFiles.getPathArr(_this);
@@ -269,10 +292,10 @@ Page({
   previewImg_listen: function (e) {
     let imgsrc_listen = e.currentTarget.dataset.presrc;
     let _this = this;
-    let arr_listen = _this.data.upImgArr_listen;
+    let arr_listen = _this.data.path_upImgArr_listen;
     let preArr_listen = [];
     arr_listen.map(function (v, i) {
-      preArr_listen.push(v.path)
+      preArr_listen.push(v)
     })
     //   console.log(preArr)
     wx.previewImage({
@@ -291,10 +314,13 @@ Page({
           let delNum = e.currentTarget.dataset.index;
           let delType = e.currentTarget.dataset.type;
           let upImgArr_listen = _this.data.upImgArr_listen;
+          let path_upImgArr_listen = _this.data.path_upImgArr_listen;
           if (delType == 'image') {
             upImgArr_listen.splice(delNum, 1)
+            path_upImgArr_listen.splice(delNum, 1)
             _this.setData({
               upImgArr_listen: upImgArr_listen,
+              path_upImgArr_listen: path_upImgArr_listen,
             })
           }
           let upFilesArr_listen = upFiles.getPathArr(_this);
@@ -313,10 +339,10 @@ Page({
   previewImg_speak: function (e) {
     let imgsrc_speak = e.currentTarget.dataset.presrc;
     let _this = this;
-    let arr_speak = _this.data.upImgArr_speak;
+    let arr_speak = _this.data.pathupImgArr_speak;
     let preArr_speak = [];
     arr_speak.map(function (v, i) {
-      preArr_speak.push(v.path)
+      preArr_speak.push(v)
     })
     //   console.log(preArr)
     wx.previewImage({
@@ -335,10 +361,13 @@ Page({
           let delNum = e.currentTarget.dataset.index;
           let delType = e.currentTarget.dataset.type;
           let upImgArr_speak = _this.data.upImgArr_speak;
+          let path_upImgArr_speak = _this.data.path_upImgArr_speak;
           if (delType == 'image') {
             upImgArr_speak.splice(delNum, 1)
+            path_upImgArr_speak.splice(delNum, 1)
             _this.setData({
               upImgArr_speak: upImgArr_speak,
+              path_upImgArr_speak: path_upImgArr_speak
             })
           } 
           let upFilesArr_speak = upFiles.getPathArr(_this);
@@ -369,44 +398,99 @@ Page({
       })
       console.log('picker发送选择改变，携带值为', requestdata)
       Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
-        console.log("kangkangba", res.data)
-        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
-        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
-        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+        if(res.statusCode !== 204){
+          console.log("今日返回值", res.data)
+          _this.data.path_upImgArr = res.data.upImgArr
+          _this.data.path_upImgArr_read = res.data.upImgArr_read
+          _this.data.path_upImgArr_write = res.data.upImgArr_write
+          _this.data.path_upImgArr_listen = res.data.upImgArr_listen
+          _this.data.path_upImgArr_speak = res.data.upImgArr_speak
+          _this.data.new_danci = res.data.new_danci
+          _this.data.new_read = res.data.new_read
+          _this.data.new_listen = res.data.new_listen
+          _this.setData(_this.data)
 
-        console.log("kangkangba", res.data)
+          _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+          _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+          _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+          _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+          _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+          console.log("今日返回处理看一下", _this.data)
+        } else {
+          var tempdata = {
+            riqi_index: 0,
+            upImgArr: [],
+            upImgArr_read: [],
+            upImgArr_write: [],
+            upImgArr_listen: [],
+            upImgArr_speak: [],
+            path_upImgArr: [],
+            path_upImgArr_read: [],
+            path_upImgArr_write: [],
+            path_upImgArr_listen: [],
+            path_upImgArr_speak: [], 
+            new_danci: null,
+            new_read: null,
+            new_listen: null,
+            username: null,
+            s: s1
+          }
+          _this.setData(tempdata)
+        }
 
-        _this.setData(res.data)
       })
 
     }
     if (e.detail.value === "1"){
-      console.log('picker发送选择改变，携带值为', e.detail.value)
       var yesterday = new Date();
       var s2 = yesterday.getFullYear() + "-" + (yesterday.getMonth() + 1) + "-" + (yesterday.getDate()-1);
       requestdata['date'] = s2
       _this.setData({
         s: s2,
       })
-      console.log('picker发送选择改变，携带值为', requestdata)
       Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
-        console.log("kangkangba", res.data)
-        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
-        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
-        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-
-        console.log("kangkangba", res.data)
-
-        _this.setData(res.data)
+        if (res.statusCode !== 204) {
+          console.log("昨天返回值", res.data)
+          _this.data.path_upImgArr = res.data.upImgArr
+          _this.data.path_upImgArr_read = res.data.upImgArr_read
+          _this.data.path_upImgArr_write = res.data.upImgArr_write
+          _this.data.path_upImgArr_listen = res.data.upImgArr_listen
+          _this.data.path_upImgArr_speak = res.data.upImgArr_speak
+          _this.data.new_danci = res.data.new_danci
+          _this.data.new_read = res.data.new_read
+          _this.data.new_listen = res.data.new_listen
+          _this.setData(_this.data)
+          _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+          _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+          _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+          _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+          _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+          console.log("昨天返回处理后看一下", _this.data)
+        }else{
+          var tempdata = {
+            riqi_index: 1,
+            upImgArr: [],
+            upImgArr_read: [],
+            upImgArr_write: [],
+            upImgArr_listen: [],
+            upImgArr_speak: [],
+            path_upImgArr: [],
+            path_upImgArr_read: [],
+            path_upImgArr_write: [],
+            path_upImgArr_listen: [],
+            path_upImgArr_speak: [], 
+            new_danci: null,
+            new_read: null,
+            new_listen: null,
+            username: null,
+            s: s2
+          }
+          _this.setData(tempdata)
+        }
       })
 
     }
     if (e.detail.value === "2"){
-      console.log('picker发送选择改变，携带值为', e.detail.value)
       var twodaysbefore = new Date();
       var s3 = twodaysbefore.getFullYear() + "-" + (twodaysbefore.getMonth() + 1) + "-" + (twodaysbefore.getDate()-2);
       _this.setData({
@@ -415,16 +499,45 @@ Page({
       Request.request(Api.Ieltsgetinfo, {
         date: s3
       }, 'GET').then(function (res) {
-        console.log(res)
-        res.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-        res.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
-        res.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-        res.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
-        res.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+        if (res.statusCode !== 204) {
+          console.log("前天返回值", res.data)
+          _this.data.path_upImgArr = res.data.upImgArr
+          _this.data.path_upImgArr_read = res.data.upImgArr_read
+          _this.data.path_upImgArr_write = res.data.upImgArr_write
+          _this.data.path_upImgArr_listen = res.data.upImgArr_listen
+          _this.data.path_upImgArr_speak = res.data.upImgArr_speak
+          _this.data.new_danci = res.data.new_danci
+          _this.data.new_read = res.data.new_read
+          _this.data.new_listen = res.data.new_listen
+          _this.setData(_this.data)
 
-        console.log("kangkangba", res.data)
-
-        _this.setData(res.data)
+          _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+          _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+          _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+          _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+          _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+          console.log("前天处理后看一下", _this.data)
+        } else {
+          var tempdata = {
+            riqi_index: 2,
+            upImgArr: [],
+            upImgArr_read: [],
+            upImgArr_write: [],
+            upImgArr_listen: [],
+            upImgArr_speak: [],
+            path_upImgArr: [],
+            path_upImgArr_read: [],
+            path_upImgArr_write: [],
+            path_upImgArr_listen: [],
+            path_upImgArr_speak: [], 
+            new_danci: null,
+            new_read: null,
+            new_listen: null,
+            username: null,
+            s: s3
+          }
+          _this.setData(tempdata)
+        }
       })
     }
 
@@ -437,7 +550,7 @@ Page({
   uploadFiles: function (e) {
     var _this = this;
     var uploadindex = e.currentTarget.dataset.upload;
-    console.log("shabi",e.currentTarget.dataset.upload)
+   
     upFiles.chooseImage(_this, _this.data.maxUploadLen, uploadindex)
   },
 
@@ -534,7 +647,6 @@ Page({
   },
   subFormData: function () {
     var _this = this
-    console.log(_this.data)
     if (_this.data.new_danci === null){
       _this.data.new_danci= 0
     }
@@ -544,6 +656,7 @@ Page({
     if (_this.data.new_read === null) {
       _this.data.new_read = 0
     }
+    console.log("提交时日期", _this.data)
     Request.request(Api.Ieltssubmitinfo, _this.data, 'POST').then(function(res){
       if(res.statusCode == 200){
         console.log("ielts success!")       
@@ -552,5 +665,10 @@ Page({
     })
 
   },
-  
+  imageLoad: function (e) {
+    console.log("imageLoad" + JSON.stringify(e))
+  },
+  imageOnloadError: function(e){
+    console.log("error")
+  }
 })

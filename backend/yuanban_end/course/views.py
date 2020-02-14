@@ -98,7 +98,7 @@ def create_course(data, user, mold):
         ieltslistenPicset = data['upImgArr_listen']
         ieltslistenPath = 'upload/toefl/listen/'
         # 雅思口语图片组
-        ieltsspeakPicset = data['upImgArr_speak']
+        ieltsspeakPicset = data['upImgArr_speak_real']
         ieltsspeakPath = 'upload/toefl/speak/'
 
         # user = UserProFile.objects.get(username=userid)
@@ -431,7 +431,7 @@ class Getieltsdetailinfo(views.APIView):
             'upImgArr_read': [IMAGES_URL + MEDIA_URL + r for r in ielts.readimageset.split(',')] if ielts.readimageset else [],
             'upImgArr_listen': [IMAGES_URL + MEDIA_URL + l for l in ielts.listenimageset.split(',')] if ielts.listenimageset else [],
             'upImgArr_write': [IMAGES_URL + MEDIA_URL + wr for wr in ielts.writeimageset.split(',')] if ielts.writeimageset else [],
-            'upImgArr_speak': [IMAGES_URL + MEDIA_URL + s for s in ielts.writeimageset.split(',')] if ielts.writeimageset else [],
+            'upImgArr_speak': [IMAGES_URL + MEDIA_URL + s for s in ielts.speakimageset.split(',')] if ielts.speakimageset else [],
             'signdate': datetime.date.strftime(ielts.signdate, "%Y-%m-%d"),
             'buqianstatus': ielts.buqianstatus,
             'username': user.name
