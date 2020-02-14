@@ -5,7 +5,7 @@ var Request = require("../../utils/request.js");
 var reconstructionArray = require("../../utils/reconstructionArray.js")
 var timer = ''
 var num = 0
-var content = "《发起活动及内容应该有哪些限制》在您使用本软件的同时，请认真且时刻遵守法律法规，在您发布活动内容的时候，应该在法律允许的范围内，如果发起的内容被大量用户举报且违反了相关的法律法规，一经发现，本软件有权限对您发布的内容进行永久删除，并对您进行封号处理！一起哟，让生活不孤单，让兴趣不流浪。祝您使用愉快! "
+var content = "在您使用本软件的同时，请认真且时刻遵守法律法规"
 
 Page({
 

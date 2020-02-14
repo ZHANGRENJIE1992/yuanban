@@ -33,7 +33,7 @@ var chooseImage = (t, count, uploadindex) =>{
                   path_upImgArr: temppath_imgArr
               })
               console.log("111", imgArr)
-              /**let upFilesArr = getPathArr(t);
+              let upFilesArr = getPathArr(t);
               if (upFilesArr.length > count-1) {
                   let imgArr = t.data.upImgArr;
                   let newimgArr = imgArr.slice(0, count)
@@ -41,7 +41,7 @@ var chooseImage = (t, count, uploadindex) =>{
                       upFilesBtn: false,
                       upImgArr: newimgArr
                   })
-              }**/
+              }
             }
             if (uploadindex == 1) {
               var imgArr_read = t.data.upImgArr_read || [];
@@ -71,7 +71,7 @@ var chooseImage = (t, count, uploadindex) =>{
               t.setData({      
                 path_upImgArr_read: temppath_imgArr_read
               })
-              /**let upFilesArr_read = getPathArr_ielts_read(t);
+              let upFilesArr_read = getPathArr_ielts_read(t);
               if (upFilesArr_read.length > count - 1) {
                 let imgArr_read = t.data.upImgArr_read;
                 let newimgArr_read = imgArr_read.slice(0, count)
@@ -79,7 +79,7 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_read: false,
                   upImgArr_read: newimgArr_read
                 })
-              }**/
+              }
             }
             if (uploadindex == 2) {
               var imgArr_write = t.data.upImgArr_write || [];
@@ -111,7 +111,7 @@ var chooseImage = (t, count, uploadindex) =>{
 
               })
 
-              /**let upFilesArr_write = getPathArr_ielts_write(t);
+              let upFilesArr_write = getPathArr_ielts_write(t);
               if (upFilesArr_write.length > count - 1) {
                 let imgArr_write = t.data.upImgArr_write;
                 let newimgArr_write = imgArr_write.slice(0, count)
@@ -119,7 +119,7 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_write: false,
                   upImgArr_write: newimgArr_write
                 })
-              }**/
+              }
             }
             if (uploadindex == 3) {
               var imgArr_listen = t.data.upImgArr_listen || [];
@@ -150,7 +150,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 path_upImgArr_listen: temppath_imgArr_listen
               })
 
-              /**let upFilesArr_listen = getPathArr_ielts_listen(t);
+              let upFilesArr_listen = getPathArr_ielts_listen(t);
               if (upFilesArr_listen.length > count - 1) {
                 let imgArr_listen = t.data.upImgArr_listen;
                 let newimgArr_listen = imgArr_listen.slice(0, count)
@@ -158,7 +158,7 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_listen: false,
                   upImgArr_listen: newimgArr_listen
                 })
-              }**/
+              }
             }
             if (uploadindex == 4) {
               var imgArr_speak = t.data.upImgArr_speak || [];
@@ -189,7 +189,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 path_upImgArr_speak: temppath_imgArr_speak
               })
 
-              /**let upFilesArr_speak = getPathArr_ielts_speak(t);
+              let upFilesArr_speak = getPathArr_ielts_speak(t);
               if (upFilesArr_speak.length > count - 1) {
                 let imgArr_speak = t.data.upImgArr_speak;
                 let newimgArr_speak = imgArr_speak.slice(0, count)
@@ -197,56 +197,164 @@ var chooseImage = (t, count, uploadindex) =>{
                   upFilesBtn_speak: false,
                   upImgArr_speak: newimgArr_speak
                 })
-              }**/
+              }
             }
             if (uploadindex == 5) {
-              var imgArr_gmat_word = t.data.upImgArr_gmat_word || [];
-              let arr_gmat_word = res.tempFiles;
+              var imgArr_blank = t.data.upImgArr_blank || [];
+              let arr_blank = res.tempFiles;
+              var temppath_imgArr_blank = t.data.path_upImgArr_blank || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_blank) {
+                temppath_imgArr_blank.push(arr_blank[i]['path'])
+              }
               //console.log(res)
               //console.log(t)
-              arr_gmat_word.map(function (v, i) {
+              arr_blank.map(function (v, i) {
+                wx.getFileSystemManager().readFile({
+                  filePath: res.tempFilePaths[i], //选择图片返回的相对路径
+                  encoding: 'base64', //编码格式
+                  success: res => { //成功的回调
+                    //console.log('data:image/png;base64,' + res.data)
+                    v['base64'] = res.data;
+                  }
+                })
                 v['progress'] = 0;
-                imgArr_gmat_word.push(v)
+                imgArr_blank.push(v)
               })
+              console.log("查看你一下", imgArr_blank)
+              t.data.upImgArr_blank = imgArr_blank
               t.setData({
-                upImgArr_gmat_word: imgArr_gmat_word
+                path_upImgArr_blank: temppath_imgArr_blank
               })
 
-              let upFilesArr_gmat_word = getPathArr(t);
-              if (upFilesArr_gmat_word.length > count - 1) {
-                let imgArr_gmat_word = t.data.upImgArr_gmat_word;
-                let newimgArr_gmat_word = imgArr_gmat_word.slice(0, count)
+              let upFilesArr_blank = getPathArr_toefl_blank(t);
+              if (upFilesArr_blank.length > count - 1) {
+                let imgArr_blank = t.data.upImgArr_blank;
+                let newimgArr_blank = imgArr_blank.slice(0, count)
                 t.setData({
-                  upFilesBtn: false,
-                  upImgArr_gmat_word: newimgArr_gmat_word
+                  upFilesBtn_blank: false,
+                  upImgArr_blank: newimgArr_blank
                 })
               }
             }
             if (uploadindex == 6) {
-              var imgArr_gmat_grammar = t.data.upImgArr_gmat_grammar || [];
-              let arr_gmat_grammar = res.tempFiles;
+              var imgArr_math = t.data.upImgArr_math || [];
+              let arr_math = res.tempFiles;
+              var temppath_imgArr_math = t.data.path_upImgArr_math || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_math) {
+                temppath_imgArr_math.push(arr_math[i]['path'])
+              }
               //console.log(res)
               //console.log(t)
-              arr_gmat_grammar.map(function (v, i) {
+              arr_math.map(function (v, i) {
+                wx.getFileSystemManager().readFile({
+                  filePath: res.tempFilePaths[i], //选择图片返回的相对路径
+                  encoding: 'base64', //编码格式
+                  success: res => { //成功的回调
+                    //console.log('data:image/png;base64,' + res.data)
+                    v['base64'] = res.data;
+                  }
+                })
                 v['progress'] = 0;
-                imgArr_gmat_grammar.push(v)
+                imgArr_math.push(v)
               })
+              console.log("查看你一下", imgArr_math)
+              t.data.upImgArr_math = imgArr_math
               t.setData({
-                upImgArr_gmat_grammar: imgArr_gmat_grammar
+                path_upImgArr_math: temppath_imgArr_math
               })
 
-              let upFilesArr_gmat_grammar = getPathArr(t);
-              if (upFilesArr_gmat_grammar.length > count - 1) {
-                let imgArr_gmat_grammar = t.data.upImgArr_gmat_grammar;
-                let newimgArr_gmat_grammar = imgArr_gmat_grammar.slice(0, count)
+              let upFilesArr_math = getPathArr_toefl_math(t);
+              if (upFilesArr_math.length > count - 1) {
+                let imgArr_math = t.data.upImgArr_math;
+                let newimgArr_math = imgArr_math.slice(0, count)
                 t.setData({
-                  upFilesBtn: false,
-                  upImgArr_gmat_grammar: newimgArr_gmat_grammar
+                  upFilesBtn_math: false,
+                  upImgArr_math: newimgArr_math
                 })
               }
             }
+            if (uploadindex == 7) {
+              var imgArr_logic = t.data.upImgArr_logic || [];
+              let arr_logic = res.tempFiles;
+              var temppath_imgArr_logic = t.data.path_upImgArr_logic || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_logic) {
+                temppath_imgArr_logic.push(arr_logic[i]['path'])
+              }
+              //console.log(res)
+              //console.log(t)
+              arr_logic.map(function (v, i) {
+                wx.getFileSystemManager().readFile({
+                  filePath: res.tempFilePaths[i], //选择图片返回的相对路径
+                  encoding: 'base64', //编码格式
+                  success: res => { //成功的回调
+                    //console.log('data:image/png;base64,' + res.data)
+                    v['base64'] = res.data;
+                  }
+                })
+                v['progress'] = 0;
+                imgArr_logic.push(v)
+              })
+              console.log("查看你一下", imgArr_logic)
+              t.data.upImgArr_logic = imgArr_logic
+              t.setData({
+                path_upImgArr_logic: temppath_imgArr_logic
+              })
 
+              let upFilesArr_logic = getPathArr_gmat_logic(t);
+              if (upFilesArr_logic.length > count - 1) {
+                let imgArr_logic = t.data.upImgArr_logic;
+                let newimgArr_logic = imgArr_logic.slice(0, count)
+                t.setData({
+                  upFilesBtn_logic: false,
+                  upImgArr_logic: newimgArr_logic
+                })
+              }
+            }
+            if (uploadindex == 8) {
+              var imgArr_grammar = t.data.upImgArr_grammar || [];
+              let arr_grammar = res.tempFiles;
+              var temppath_imgArr_grammar = t.data.path_upImgArr_grammar || [];
+              var i = 0;
+              //console.log(1, temppath_imgArr)
+              for (i in arr_grammar) {
+                temppath_imgArr_grammar.push(arr_grammar[i]['path'])
+              }
+              //console.log(res)
+              //console.log(t)
+              arr_grammar.map(function (v, i) {
+                wx.getFileSystemManager().readFile({
+                  filePath: res.tempFilePaths[i], //选择图片返回的相对路径
+                  encoding: 'base64', //编码格式
+                  success: res => { //成功的回调
+                    //console.log('data:image/png;base64,' + res.data)
+                    v['base64'] = res.data;
+                  }
+                })
+                v['progress'] = 0;
+                imgArr_grammar.push(v)
+              })
+              console.log("查看你一下", imgArr_grammar)
+              t.data.upImgArr_grammar = imgArr_grammar
+              t.setData({
+                path_upImgArr_grammar: temppath_imgArr_grammar
+              })
 
+              let upFilesArr_grammar = getPathArr_gmat_grammar(t);
+              if (upFilesArr_grammar.length > count - 1) {
+                let imgArr_grammar = t.data.upImgArr_grammar;
+                let newimgArr_grammar = imgArr_grammar.slice(0, count)
+                t.setData({
+                  upFilesBtn_grammar: false,
+                  upImgArr_grammar: newimgArr_grammar
+                })
+              }
+            }
           },
       });
 
@@ -355,6 +463,45 @@ var getPathArr_ielts_listen = t => {
   return filesPathsArr_ielts_listen;
 }
 
+var getPathArr_toefl_math = t => {
+  let imgarr_toefl_math = t.data.upImgArr_math || [];
+  let imgPathArr_toefl_math = [];
+  imgarr_toefl_math.map(function (v, i) {
+    imgPathArr_toefl_math.push(v.path)
+  })
+  let filesPathsArr_toefl_math = imgPathArr_toefl_math
+  return filesPathsArr_toefl_math;
+}
+
+var getPathArr_toefl_blank = t => {
+  let imgarr_toefl_blank = t.data.upImgArr_blank || [];
+  let imgPathArr_toefl_blank = [];
+  imgarr_toefl_blank.map(function (v, i) {
+    imgPathArr_toefl_blank.push(v.path)
+  })
+  let filesPathsArr_toefl_blank = imgPathArr_toefl_blank
+  return filesPathsArr_toefl_blank;
+}
+
+var getPathArr_gmat_logic = t => {
+  let imgarr_gmat_logic = t.data.upImgArr_logic || [];
+  let imgPathArr_gmat_logic = [];
+  imgarr_gmat_logic.map(function (v, i) {
+    imgPathArr_gmat_logic.push(v.path)
+  })
+  let filesPathsArr_gmat_logic = imgPathArr_gmat_logic
+  return filesPathsArr_gmat_logic;
+}
+
+var getPathArr_gmat_grammar = t => {
+  let imgarr_gmat_grammar = t.data.upImgArr_grammar || [];
+  let imgPathArr_gmat_grammar = [];
+  imgarr_gmat_grammar.map(function (v, i) {
+    imgPathArr_gmat_grammar.push(v.path)
+  })
+  let filesPathsArr_gmat_grammar = imgPathArr_gmat_grammar
+  return filesPathsArr_gmat_grammar;
+}
 /**
  * upFilesFun(this,object)
  * object:{

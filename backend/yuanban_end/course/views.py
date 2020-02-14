@@ -98,7 +98,7 @@ def create_course(data, user, mold):
         ieltslistenPicset = data['upImgArr_listen']
         ieltslistenPath = 'upload/toefl/listen/'
         # 雅思口语图片组
-        ieltsspeakPicset = data['upImgArr_speak_real']
+        ieltsspeakPicset = data['upImgArr_speak']
         ieltsspeakPath = 'upload/toefl/speak/'
 
         # user = UserProFile.objects.get(username=userid)
