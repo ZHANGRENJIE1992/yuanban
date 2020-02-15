@@ -31,6 +31,11 @@ Page({
     })
   },
   onLoad: function (options) {
+    if (!app.globalData.jwt) {
+      wx.redirectTo({
+        url: '../login/login',
+      })
+    }
     var that = this;
     if (!app.globalData.jwt) {
       wx.redirectTo({

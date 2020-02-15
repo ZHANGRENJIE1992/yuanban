@@ -13,7 +13,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-from Yiqi.sys_info import MINI_APP_ID, MINI_APP_SECRET
+from yuanban_end.sys_info import MINI_APP_ID, MINI_APP_SECRET
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

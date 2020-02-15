@@ -54,7 +54,11 @@ Page({
    */
   onLoad: function (options) {
     // 获取个人信息
-
+    if (!app.globalData.jwt) {
+      wx.redirectTo({
+        url: '../login/login',
+      })
+    }
     var _this = this
     console.log("载入查看",options)
     var arr = Object.keys(options);

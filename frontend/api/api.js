@@ -1,5 +1,7 @@
 let host = 'http://127.0.0.1:8001'
 
+//let host = 'https://yuanban.info'
+
 //let host = 'localhost'
 // 用户注册url
 var Registered = host + '/users/Registered/'

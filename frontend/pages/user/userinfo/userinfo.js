@@ -32,6 +32,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    if (!app.globalData.jwt) {
+      wx.redirectTo({
+        url: '../login/login',
+      })
+    }
+    console.log("userinfo:", app.globalData.jwt)
     // 获取个人信息
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {

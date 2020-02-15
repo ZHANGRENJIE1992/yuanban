@@ -149,8 +149,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.AnonRateThrottle',
@@ -171,12 +171,12 @@ REST_FRAMEWORK = {
 REST_FRAMEWORK_EXTENSIONS = {
     'DEFAULT_CACHE_RESPONSE_TIMEOUT': 10 * 120
 }
-#
-# JWT_AUTH = {
-#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
-#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=360),
-#     'JWT_AUTH_HEADER_PREFIX': 'JWT',
-# }
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
+     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=360),
+     'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
 # MEDIA_ROOT=os.path.join(BASE_DIR,"blog","media")  #blog是项目名，media是约定成俗的文件夹名
 # MEDIA_URL="/media/"      # 跟STATIC_URL类似，指定用户可以通过这个路径找到文件
 #
