@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e35fe7-5489-4a3e-aafe-cd4a9aab2044" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,10 +41,22 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="242">
-                  <caret line="91" column="34" selection-start-line="91" selection-start-column="34" selection-end-line="91" selection-end-column="34" />
+                <state relative-caret-position="190">
+                  <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
                   <folding>
                     <element signature="e#312#321#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/backend/yuanban_end/utils/weixin_util/weixin/pay.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="198">
+                  <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#91#102#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -141,7 +152,11 @@
       <find>status=status.HTTP_200_OK</find>
       <find>Response({},</find>
       <find>return Response(status=status.HTTP_200_OK)</find>
+      <find>127.0.0.1</find>
     </findStrings>
+    <dirStrings>
+      <dir>D:\code\project\test\yuanban\backend</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -264,25 +279,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581421758656</updated>
-      <workItem from="1581421762503" duration="41059000" />
+      <workItem from="1581421762503" duration="42399000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41059000" />
+    <option name="totallyTimeSpent" value="42399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12106017" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2191977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.2991914" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.2991914" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -452,10 +467,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/utils/weixin_util/weixin/pay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="e#91#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="91" column="34" selection-start-line="91" selection-start-column="34" selection-end-line="91" selection-end-column="34" />
+        <state relative-caret-position="190">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
           <folding>
             <element signature="e#312#321#0" expanded="true" />
           </folding>
