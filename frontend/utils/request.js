@@ -16,7 +16,7 @@ function Request(url, data = {}, method) {
         data: data,
         success: resolve
       })
-      console.log("request.JWT.get:", app.globalData.jwt)
+      //console.log("request.JWT.get:", app.globalData.jwt)
     })
     
     return get_data

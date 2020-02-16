@@ -1,5 +1,5 @@
 var api_url = require("./api/api.js"); //引入apijs
-
+var showToast3 = require("utils/showToast.js");
 
 //app.js
 App({
@@ -53,8 +53,12 @@ App({
               that.globalData.jwt = res.data.token
               that.globalData.access_token = res.data.token;
               that.globalData.account_id = res.data.sub;
+              wx.switchTab({
+                url: '../index/index',
+              })
             } else if (res.statusCode === 400) {
               // 如果没有注册调用注册接口
+              showToast3.showToast3()
               that.register(userinfo);
             } else {
               // 提示错误信息

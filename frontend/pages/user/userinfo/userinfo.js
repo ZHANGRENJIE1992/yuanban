@@ -37,16 +37,26 @@ Page({
         url: '../login/login',
       })
     }
-    console.log("userinfo:", app.globalData.jwt)
+    console.log("userinfo_jwt:", app.globalData.jwt)
     // 获取个人信息
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {
-        console.log(res)
-        that.setData(res.data)
-        var thesignature = new Array
-        if (res.data.thesignature.length > 7) {
-          for (var i = 0; i < 7; i++) {
-            thesignature.push(res.data.thesignature[i])
+        console.log("userinfo_get", res.data.detail)
+          if (res.data.detail == "Signature has expired.")
+          {
+            console.log("redirect", res.data.detail)
+            app.globalData.jwt = null;
+            wx.redirectTo({
+              url: '../../login/login',
+            
+            })
+          }else{
+          that.setData(res.data)
+            var thesignature = new Array
+            if (res.data.thesignature.length > 7) {
+              for (var i = 0; i < 7; i++) {
+                thesignature.push(res.data.thesignature[i])
+              }
           }
         }
         that.setData({
@@ -115,7 +125,7 @@ Page({
         })
           .then(function (res) {
             if (res.statusCode == 200) {
-              console.log(res)
+              //console.log(res)
               showToast.showToast('更改成功', 'success')
               setTimeout(function () {
                 that.onLoad()
@@ -136,7 +146,7 @@ Page({
       new_shengri: new_shengri
     }, 'POST')
       .then(function (res) {
-        console.log(res)
+        //console.log(res)
         that.onLoad()
         showToast.showToast('更改成功', 'success')
       })
@@ -158,7 +168,7 @@ Page({
   // 更改昵称
   new_nametap: function (event) {
     var that = this
-    console.log(event)
+    //console.log(event)
     that.setData({
       hiddenmodalput: false
     })
@@ -255,6 +265,7 @@ Page({
               value_phone: ''
             })
             that.onLoad()
+            //console.log(res.data.message)
             showToast.showToast(res.data.message, 'success')
           } else {
             showToast.showToast(res.data.message, 'none')

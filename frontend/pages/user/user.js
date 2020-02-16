@@ -30,8 +30,17 @@ Page({
     // 获取个人信息
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {
-        console.log("shabi",res)
-        that.setData(res.data)
+        //console.log("shabi",res)
+        if (res.data.detail == "Signature has expired.") {
+          console.log("redirect", res.data.detail)
+          app.globalData.jwt = null;
+          wx.redirectTo({
+            url: '../login/login',
+
+          })
+        } else {
+          that.setData(res.data)
+        }
       })
   },
 
@@ -96,7 +105,7 @@ Page({
         })
           .then(function (res) {
             if (res.statusCode == 200) {
-              console.log(res)
+              //console.log(res)
               showToast.showToast('更换成功', 'success')
               setTimeout(function () {
                 that.onLoad()

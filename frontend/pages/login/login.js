@@ -4,7 +4,7 @@ var Api = require("../../api/api.js")
 var Request = require("../../utils/request.js");
 var reconstructionArray = require("../../utils/reconstructionArray.js")
 var timer = ''
-var num = 0
+
 var content = "在您使用本软件的同时，请认真且时刻遵守法律法规"
 
 Page({
@@ -13,7 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    disabled: true
+    disabled: true,
+    num:0
   },
 
   /**
@@ -21,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    //console.log("login",app.globalData.jwt)
     if (app.globalData.jwt) {
       wx.switchTab({
         url: '../index/index',
@@ -41,14 +43,14 @@ Page({
   onShow: function () {
     var that = this
     // 获取注册页面分享数据
-    Request.request(Api.GeneralSharingViewSet, '', 'GET')
+    /*Request.request(Api.GeneralSharingViewSet, '', 'GET')
       .then(function (res) {
         that.setData({
           gensharing: res.data
         })
       })
-    console.log(that.data)
-    timer = setInterval(this.onLoad, 2000)
+    //console.log(that.data)
+    timer = setInterval(this.onLoad, 2000)*/
   },
 
   /**
@@ -100,17 +102,17 @@ Page({
   },
   checkboxChange: function (e) {
     var that = this;
-    console.log(num)
-    if (num == 0) {
-      num = 1
+
+    if (that.data.num == 0) {
       that.setData({
-        disabled: false
+        disabled: false,
+        num:1,
       })
       return false
     } else {
-      num = 0
       that.setData({
-        disabled: true
+        disabled: true,
+        num: 0
       })
       return false
     }

@@ -32,7 +32,7 @@ var chooseImage = (t, count, uploadindex) =>{
               t.setData({
                   path_upImgArr: temppath_imgArr
               })
-              console.log("111", imgArr)
+              //console.log("111", imgArr)
               let upFilesArr = getPathArr(t);
               if (upFilesArr.length > count-1) {
                   let imgArr = t.data.upImgArr;
@@ -66,7 +66,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_read.push(v)
               })
-              console.log("阅读图片集", temppath_imgArr_read)
+              //console.log("阅读图片集", temppath_imgArr_read)
               t.data.upImgArr_read = imgArr_read
               t.setData({      
                 path_upImgArr_read: temppath_imgArr_read
@@ -90,7 +90,7 @@ var chooseImage = (t, count, uploadindex) =>{
               for (i in arr_write) {
                 temppath_imgArr_write.push(arr_write[i]['path'])
               }
-              console.log("原始write", t.data.upImgArr_write)
+              //console.log("原始write", t.data.upImgArr_write)
               //console.log(t)
               arr_write.map(function (v, i) {
                 wx.getFileSystemManager().readFile({
@@ -105,7 +105,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 imgArr_write.push(v)
               })
               t.data.upImgArr_write = imgArr_write
-              console.log("write:", imgArr_write)
+              //console.log("write:", imgArr_write)
               t.setData({
                 path_upImgArr_write: temppath_imgArr_write
 
@@ -144,7 +144,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_listen.push(v)
               })
-              console.log("啥情况",imgArr_listen)
+              //console.log("啥情况",imgArr_listen)
               t.data.upImgArr_listen = imgArr_listen
               t.setData({
                 path_upImgArr_listen: temppath_imgArr_listen
@@ -183,7 +183,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_speak.push(v)
               })
-              console.log("查看你一下", imgArr_speak)
+              //console.log("查看你一下", imgArr_speak)
               t.data.upImgArr_speak =  imgArr_speak
               t.setData({         
                 path_upImgArr_speak: temppath_imgArr_speak
@@ -222,7 +222,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_blank.push(v)
               })
-              console.log("查看你一下", imgArr_blank)
+              //console.log("查看你一下", imgArr_blank)
               t.data.upImgArr_blank = imgArr_blank
               t.setData({
                 path_upImgArr_blank: temppath_imgArr_blank
@@ -261,7 +261,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_math.push(v)
               })
-              console.log("查看你一下", imgArr_math)
+              //console.log("查看你一下", imgArr_math)
               t.data.upImgArr_math = imgArr_math
               t.setData({
                 path_upImgArr_math: temppath_imgArr_math
@@ -300,7 +300,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_logic.push(v)
               })
-              console.log("查看你一下", imgArr_logic)
+              //console.log("查看你一下", imgArr_logic)
               t.data.upImgArr_logic = imgArr_logic
               t.setData({
                 path_upImgArr_logic: temppath_imgArr_logic
@@ -339,7 +339,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 v['progress'] = 0;
                 imgArr_grammar.push(v)
               })
-              console.log("查看你一下", imgArr_grammar)
+              //console.log("查看你一下", imgArr_grammar)
               t.data.upImgArr_grammar = imgArr_grammar
               t.setData({
                 path_upImgArr_grammar: temppath_imgArr_grammar
@@ -358,7 +358,7 @@ var chooseImage = (t, count, uploadindex) =>{
           },
       });
 
-  console.log("上传后的信息", t.data)  
+  //console.log("上传后的信息", t.data)  
     
 }
 

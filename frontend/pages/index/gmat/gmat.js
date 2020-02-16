@@ -5,6 +5,7 @@ var Request = require("../../../utils/request.js");
 var Api = require("../../../api/api.js")
 var Httpcovert = require("../../../utils/httpcovert.js")
 var Format = require("../../../utils/datetime.js")
+var showToast2 = require("../../../utils/showToast.js");
 
 const app = getApp()
 Page({
@@ -60,7 +61,7 @@ Page({
       })
     }
     var _this = this
-    console.log("载入查看", options)
+//    console.log("载入查看", options)
     var arr = Object.keys(options);
     if (arr.length == 0) {
       options = new Date()
@@ -68,30 +69,39 @@ Page({
       _this.data.s = options
     }
     Request.request(Api.Gmatgetinfo, { date: options }, 'GET').then(function (res) {
-      if (res.statusCode !== 204) {
-        console.log("载入成功row", res.data)
-        _this.data.path_upImgArr = res.data.upImgArr
-        _this.data.path_upImgArr_read = res.data.upImgArr_read
-        _this.data.path_upImgArr_write = res.data.upImgArr_write
-        _this.data.path_upImgArr_logic = res.data.upImgArr_logic
-        _this.data.path_upImgArr_math = res.data.upImgArr_math
-        _this.data.path_upImgArr_grammar = res.data.upImgArr_grammar
-        _this.data.new_danci = res.data.new_danci
-        _this.data.new_read = res.data.new_read
-        _this.data.new_logic = res.data.new_logic
-        _this.data.new_math = res.data.new_math
-        _this.data.new_grammar = res.data.new_grammar
+      if (res.data.detail == "Signature has expired.") {
+        console.log("redirect", res.data.detail)
+        app.globalData.jwt = null;
+        wx.redirectTo({
+          url: '../login/login',
 
-        _this.setData(_this.data)
-        _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-        _this.data.upImgArr_math = Httpcovert.httpcovert(res.data.upImgArr_math)
-        _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-        _this.data.upImgArr_logic = Httpcovert.httpcovert(res.data.upImgArr_logic)
-        _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-        _this.data.upImgArr_grammar = Httpcovert.httpcovert(res.data.upImgArr_grammar)
+        })
+      } else {
+        if (res.statusCode !== 204) {
+  //        console.log("载入成功row", res.data)
+          _this.data.path_upImgArr = res.data.upImgArr
+          _this.data.path_upImgArr_read = res.data.upImgArr_read
+          _this.data.path_upImgArr_write = res.data.upImgArr_write
+          _this.data.path_upImgArr_logic = res.data.upImgArr_logic
+          _this.data.path_upImgArr_math = res.data.upImgArr_math
+          _this.data.path_upImgArr_grammar = res.data.upImgArr_grammar
+          _this.data.new_danci = res.data.new_danci
+          _this.data.new_read = res.data.new_read
+          _this.data.new_logic = res.data.new_logic
+          _this.data.new_math = res.data.new_math
+          _this.data.new_grammar = res.data.new_grammar
+
+          _this.setData(_this.data)
+          _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+          _this.data.upImgArr_math = Httpcovert.httpcovert(res.data.upImgArr_math)
+          _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+          _this.data.upImgArr_logic = Httpcovert.httpcovert(res.data.upImgArr_logic)
+          _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+          _this.data.upImgArr_grammar = Httpcovert.httpcovert(res.data.upImgArr_grammar)
 
 
-        console.log("载入处理后", _this.data)
+  //        console.log("载入处理后", _this.data)
+        }
       }
     })
     _this.data.loadfinish = true
@@ -196,7 +206,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+//          console.log('用户点击取消')
         }
       }
     })
@@ -244,7 +254,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+//          console.log('用户点击取消')
         }
       }
     })
@@ -291,7 +301,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+//          console.log('用户点击取消')
         }
       }
     })
@@ -338,7 +348,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+//          console.log('用户点击取消')
         }
       }
     })
@@ -385,7 +395,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })
@@ -433,7 +443,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })
@@ -452,10 +462,10 @@ Page({
       _this.setData({
         s: s1,
       })
-      console.log('picker发送选择改变，携带值为', requestdata)
+      // console.log('picker发送选择改变，携带值为', requestdata)
       Request.request(Api.Gmatgetinfo, requestdata, 'GET').then(function (res) {
         if (res.statusCode !== 204) {
-          console.log("载入成功row", res.data)
+          // console.log("载入成功row", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -478,7 +488,7 @@ Page({
 
 
 
-          console.log("载入处理后", _this.data)
+          // console.log("载入处理后", _this.data)
         } else {
           var tempdata = {
             riqi_index: 0,
@@ -517,7 +527,7 @@ Page({
       })
       Request.request(Api.Gmatgetinfo, requestdata, 'GET').then(function (res) {
         if (res.statusCode !== 204) {
-          console.log("载入成功row", res.data)
+          // console.log("载入成功row", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -540,7 +550,7 @@ Page({
 
 
 
-          console.log("载入处理后", _this.data)
+          // console.log("载入处理后", _this.data)
         } else {
           var tempdata = {
             riqi_index: 1,
@@ -579,7 +589,7 @@ Page({
         date: s3
       }, 'GET').then(function (res) {
         if (res.statusCode !== 204) {
-          console.log("载入成功row", res.data)
+          // console.log("载入成功row", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -602,7 +612,7 @@ Page({
 
 
 
-          console.log("载入处理后", _this.data)
+          // console.log("载入处理后", _this.data)
         } else {
           var tempdata = {
             riqi_index: 2,
@@ -811,10 +821,12 @@ Page({
     if (_this.data.new_grammar === null) {
       _this.data.new_grammar = 0
     }
-    console.log("提交时日期", _this.data)
+    // console.log("提交时日期", _this.data)
     Request.request(Api.Gmatsubmitinfo, _this.data, 'POST').then(function (res) {
-      if (res.statusCode == 200) {
-        console.log("ielts success!")
+      if (res.statusCode == 200 || 201) {
+
+        showToast2.showToast2('success')
+        
       }
       _this.onLoad(_this.data.s)
     })

@@ -3,7 +3,7 @@
   <view class='user_view_beijing_view'>
    <image wx:if="{{background}}" class='user_view_beijing_view_images' mode="aspectFill" src='{{background}}'></image>
   </view>
-  <image class='huanbeijingtishi' src='../../images/icon/huanbeijing.png' catchtap='huanbeijing' data-type='GHBJ'></image>
+  <!--<image class='huanbeijingtishi' src='../../images/icon/huanbeijing.png' catchtap='huanbeijing' data-type='GHBJ'></image>-->
   <view class='user_view_touxiang_view'>
     <image mode="aspectFill" style='border-radius:100rpx;' class='user_view_touxiang_view_images' src='{{avatar}}' catchtap='huanbeijing' data-type='GHTX'></image>
     <view>

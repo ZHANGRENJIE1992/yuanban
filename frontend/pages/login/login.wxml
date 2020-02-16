@@ -5,7 +5,7 @@
     <text class='login_log_image_text'>远伴助手需要您的微信授权，才能进行使用。在您使用之前请您务必认真阅读《使用协议》！</text>
     <checkbox-group catchtap="checkboxChange" class='login_log_image_text1'>
       <label class="checkbox">
-        <checkbox value="" checked="" />
+        <checkbox value="" checked="{{check}}" />
         <text>阅读并同意</text>
         <text class='login_log_image_text2' catchtap="yuedu" >《使用协议》</text>
       </label>

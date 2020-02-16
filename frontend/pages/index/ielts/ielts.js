@@ -5,6 +5,7 @@ var Request = require("../../../utils/request.js");
 var Api = require("../../../api/api.js")
 var Httpcovert = require("../../../utils/httpcovert.js")
 var Format = require("../../../utils/datetime.js")
+var showToast2 = require("../../../utils/showToast.js");
 
 const app = getApp()
 Page({
@@ -60,7 +61,7 @@ Page({
       })
     }
     var _this = this
-    console.log("载入查看",options)
+    //console.log("载入查看",options)
     var arr = Object.keys(options);
     if (arr.length == 0){
       options = new Date()
@@ -68,28 +69,38 @@ Page({
       _this.data.s = options
     }
     Request.request(Api.Ieltsgetinfo, {date:options},'GET').then(function(res){
-      if(res.statusCode !== 204){
-        console.log("载入成功row", res.data)
-        _this.data.path_upImgArr = res.data.upImgArr
-        _this.data.path_upImgArr_read = res.data.upImgArr_read
-        _this.data.path_upImgArr_write = res.data.upImgArr_write
-        _this.data.path_upImgArr_listen = res.data.upImgArr_listen
-        _this.data.path_upImgArr_speak = res.data.upImgArr_speak
-        _this.data.new_danci = res.data.new_danci
-        _this.data.new_read = res.data.new_read
-        _this.data.new_listen = res.data.new_listen
+      if (res.data.detail == "Signature has expired.") {
+        console.log("redirect", res.data.detail)
+        app.globalData.jwt = null;
+        wx.redirectTo({
+          url: '../login/login',
 
-        _this.setData(_this.data)
-        _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
-        _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
-        _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
-        _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
-        _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
+        })
+      } else {
+        if(res.statusCode !== 204){
+          //console.log("载入成功row", res.data)
+          _this.data.path_upImgArr = res.data.upImgArr
+          _this.data.path_upImgArr_read = res.data.upImgArr_read
+          _this.data.path_upImgArr_write = res.data.upImgArr_write
+          _this.data.path_upImgArr_listen = res.data.upImgArr_listen
+          _this.data.path_upImgArr_speak = res.data.upImgArr_speak
+          _this.data.new_danci = res.data.new_danci
+          _this.data.new_read = res.data.new_read
+          _this.data.new_listen = res.data.new_listen
+
+          _this.setData(_this.data)
+          _this.data.upImgArr = Httpcovert.httpcovert(res.data.upImgArr)
+          _this.data.upImgArr_listen = Httpcovert.httpcovert(res.data.upImgArr_listen)
+          _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
+          _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
+          _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
 
 
-        console.log("载入处理后", _this.data)
+          //console.log("载入处理后", _this.data)
+        }
       }
-    })
+      })
+    
     _this.data.loadfinish = true
     _this.setData(_this.data.loadfinish)
   },
@@ -152,7 +163,7 @@ Page({
     arr.map(function (v, i) {
       preArr.push(v)
     })
-    //   console.log(preArr)
+    //   //console.log(preArr)
     wx.previewImage({
       current: imgsrc,
       urls: preArr
@@ -192,7 +203,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          //console.log('用户点击取消')
         }
       }
     })
@@ -206,7 +217,7 @@ Page({
     arr_read.map(function (v, i) {
       preArr_read.push(v)
     })
-    //   console.log(preArr)
+    //   //console.log(preArr)
     wx.previewImage({
       current: imgsrc_read,
       urls: preArr_read
@@ -240,7 +251,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          //console.log('用户点击取消')
         }
       }
     })
@@ -254,7 +265,7 @@ Page({
     arr_write.map(function (v, i) {
       preArr_write.push(v)
     })
-    //   console.log(preArr)
+    //   //console.log(preArr)
     wx.previewImage({
       current: imgsrc_write,
       urls: preArr_write
@@ -287,7 +298,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          //console.log('用户点击取消')
         }
       }
     })
@@ -301,7 +312,7 @@ Page({
     arr_listen.map(function (v, i) {
       preArr_listen.push(v)
     })
-    //   console.log(preArr)
+    //   //console.log(preArr)
     wx.previewImage({
       current: imgsrc_listen,
       urls: preArr_listen
@@ -334,7 +345,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          //console.log('用户点击取消')
         }
       }
     })
@@ -348,7 +359,7 @@ Page({
     arr_speak.map(function (v, i) {
       preArr_speak.push(v)
     })
-    //   console.log(preArr)
+    //   //console.log(preArr)
     wx.previewImage({
       current: imgsrc_speak,
       urls: preArr_speak
@@ -381,7 +392,7 @@ Page({
             })
           }
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          //console.log('用户点击取消')
         }
       }
     })
@@ -400,10 +411,10 @@ Page({
       _this.setData({
         s: s1,
       })
-      console.log('picker发送选择改变，携带值为', requestdata)
+      //console.log('picker发送选择改变，携带值为', requestdata)
       Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
         if(res.statusCode !== 204){
-          console.log("今日返回值", res.data)
+          //console.log("今日返回值", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -419,7 +430,7 @@ Page({
           _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
           _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
           _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-          console.log("今日返回处理看一下", _this.data)
+          //console.log("今日返回处理看一下", _this.data)
         } else {
           var tempdata = {
             riqi_index: 0,
@@ -454,7 +465,7 @@ Page({
       })
       Request.request(Api.Ieltsgetinfo, requestdata, 'GET').then(function (res) {
         if (res.statusCode !== 204) {
-          console.log("昨天返回值", res.data)
+          //console.log("昨天返回值", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -469,7 +480,7 @@ Page({
           _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
           _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
           _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-          console.log("昨天返回处理后看一下", _this.data)
+          //console.log("昨天返回处理后看一下", _this.data)
         }else{
           var tempdata = {
             riqi_index: 1,
@@ -504,7 +515,7 @@ Page({
         date: s3
       }, 'GET').then(function (res) {
         if (res.statusCode !== 204) {
-          console.log("前天返回值", res.data)
+          //console.log("前天返回值", res.data)
           _this.data.path_upImgArr = res.data.upImgArr
           _this.data.path_upImgArr_read = res.data.upImgArr_read
           _this.data.path_upImgArr_write = res.data.upImgArr_write
@@ -520,7 +531,7 @@ Page({
           _this.data.upImgArr_read = Httpcovert.httpcovert(res.data.upImgArr_read)
           _this.data.upImgArr_speak = Httpcovert.httpcovert(res.data.upImgArr_speak)
           _this.data.upImgArr_write = Httpcovert.httpcovert(res.data.upImgArr_write)
-          console.log("前天处理后看一下", _this.data)
+          //console.log("前天处理后看一下", _this.data)
         } else {
           var tempdata = {
             riqi_index: 2,
@@ -660,19 +671,24 @@ Page({
     if (_this.data.new_read === null) {
       _this.data.new_read = 0
     }
-    console.log("提交时日期", _this.data)
+    //console.log("提交时日期", _this.data)
     Request.request(Api.Ieltssubmitinfo, _this.data, 'POST').then(function(res){
-      if(res.statusCode == 200){
-        console.log("ielts success!")       
+      if(res.statusCode == 200||201){
+        //console.log("ielts success!") 
+        //console.log("ielts status", res.statusCode)
+        
+          //console.log("ielts success!")
+          showToast2.showToast2('success')
+             
       }
       _this.onLoad(_this.data.s)
     })
 
   },
   imageLoad: function (e) {
-    console.log("imageLoad" + JSON.stringify(e))
+    //console.log("imageLoad" + JSON.stringify(e))
   },
   imageOnloadError: function(e){
-    console.log("error")
+    //console.log("error")
   }
 })

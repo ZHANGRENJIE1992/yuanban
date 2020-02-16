@@ -256,7 +256,7 @@ class GetUser(views.APIView):
             'nickName': nickName,
             'mobile': mobile,
             'birthay': datetime.datetime.strftime(birthay, "%Y-%m-%d"),
-            'background': IMAGES_URL + "/" + str(background),
+            'background': IMAGES_URL + MEDIA_URL + 'upload/' + str(background),
             'username':username
         }
         return Response(user_info, status=status.HTTP_200_OK)

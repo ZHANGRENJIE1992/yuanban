@@ -31,11 +31,6 @@ Page({
     })
   },
   onLoad: function (options) {
-    if (!app.globalData.jwt) {
-      wx.redirectTo({
-        url: '../login/login',
-      })
-    }
     var that = this;
     if (!app.globalData.jwt) {
       wx.redirectTo({
@@ -43,7 +38,7 @@ Page({
       })
       return false
     }
-
+    
   },
 
   /**
@@ -70,7 +65,7 @@ Page({
       })
       return false
     } else {
-      console.log(11)
+      //console.log(11)
     }
   },
 
@@ -130,7 +125,7 @@ Page({
         // 获取分享用户
         Request.request(Api.SharingUserViewSet, '', 'POST')
           .then(function(res) {
-            console.LOG(res)
+            //console.LOG(res)
           })
       }
     }

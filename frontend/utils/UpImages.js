@@ -2,8 +2,8 @@ const app = getApp()
 
 function UpImages(url, data, formData) {
   var get_data = new Promise(function(resolve, reject) {
-    console.log('url',url),
-    console.log('data',data),
+//    console.log('url',url),
+//    console.log('data',data),
     wx.uploadFile({
       url: url,
       filePath: data,
