@@ -53,7 +53,7 @@ var chooseImage = (t, count, uploadindex) =>{
                 temppath_imgArr_read.push(arr_read[i]['path'])
               }
               //console.log(res)
-              console.log("imgArr_read是啥", t.data.upImgArr_read)
+              //console.log("imgArr_read是啥", t.data.upImgArr_read)
               arr_read.map(function (v, i) {
                 wx.getFileSystemManager().readFile({
                   filePath: res.tempFilePaths[0], //选择图片返回的相对路径
@@ -571,7 +571,7 @@ var upFilesFun = (t, data, progress, success) =>{
                 t.setData({
                     uploadedPathArr: []
                 })
-                console.log('成功：' + successNumber + " 失败：" + failNumber)
+                //console.log('成功：' + successNumber + " 失败：" + failNumber)
             }else{
                 startIndex++;
                 // console.log(startIndex)

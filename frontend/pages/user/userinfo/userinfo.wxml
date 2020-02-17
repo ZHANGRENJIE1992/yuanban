@@ -30,7 +30,7 @@
   <view class='gerenxinxi_view_touxiang'>
     <text>学习结束时间</text>
     <view class='gerenxinxi_view_touxiang_images'>
-      <picker class='gerenxinxi_view_touxiang_images_sr' data-type='GHSRI' mode="date" value="{{birthay}}" end="{{date_end}}" bindchange="bindDateChangess">{{birthay}}
+      <picker class='gerenxinxi_view_touxiang_images_sr' data-type='GHSRI' mode="date" value="{{birthay}}" start="{{date_end}}" bindchange="bindDateChangess">{{birthay}}
         <image class='touxiang_xiugaitishi' src='../../../images/icon/nextbm.png'></image>
       </picker>
     </view>

@@ -66,7 +66,7 @@ Page({
     }
     Request.request(Api.Toeflgetinfo, { date: options }, 'GET').then(function (res) {
       if (res.data.detail == "Signature has expired.") {
-        console.log("redirect", res.data.detail)
+        //console.log("redirect", res.data.detail)
         app.globalData.jwt = null;
         wx.redirectTo({
           url: '../login/login',
