@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e35fe7-5489-4a3e-aafe-cd4a9aab2044" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index/gmat/gmat.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/gmat/gmat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index/gre/gre.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/gre/gre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index/ielts/ielts.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/ielts/ielts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index/toefl/toefl.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/toefl/toefl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/user/record/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/record/record.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/user/record/record.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/record/record.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/upFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/upFiles.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,16 +52,49 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+            <state relative-caret-position="399">
+              <caret line="200" column="10" lean-forward="true" selection-start-line="200" selection-start-column="10" selection-end-line="200" selection-end-column="10" />
               <folding>
                 <element signature="e#312#321#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/all.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="1366" lean-forward="true" selection-start-line="1366" selection-end-line="1366" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/error.log">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/request.log">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/scprits.log">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -74,39 +121,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/api/api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-              <folding>
-                <element signature="e#671#719#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -120,6 +134,7 @@
       <find>return Response(status=status.HTTP_200_OK)</find>
       <find>127.0.0.1</find>
       <find>logs</find>
+      <find>logger</find>
     </findStrings>
     <dirStrings>
       <dir>D:\code\project\test\yuanban\backend</dir>
@@ -139,6 +154,7 @@
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/views.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -173,6 +189,13 @@
               <item name="yuanban" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="yuanban_end" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuanban" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="yuanban_end" type="462c0819:PsiDirectoryNode" />
+              <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
@@ -233,22 +256,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581421758656</updated>
-      <workItem from="1581421762503" duration="48412000" />
+      <workItem from="1581421762503" duration="48711000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48412000" />
+    <option name="totallyTimeSpent" value="48711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.16311301" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16311301" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.40130153" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.40130153" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Python Console" order="4" />
@@ -432,13 +455,36 @@
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/django.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/request.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/scprits.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/error.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/all.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="1366" lean-forward="true" selection-start-line="1366" selection-end-line="1366" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
+        <state relative-caret-position="399">
+          <caret line="200" column="10" lean-forward="true" selection-start-line="200" selection-start-column="10" selection-end-line="200" selection-end-column="10" />
           <folding>
             <element signature="e#312#321#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
         </state>
       </provider>
     </entry>

@@ -37,14 +37,14 @@ Page({
         url: '../login/login',
       })
     }
-    console.log("userinfo_jwt:", app.globalData.jwt)
+    //console.log("userinfo_jwt:", app.globalData.jwt)
     // 获取个人信息
     Request.request(Api.GetUser, '', 'GET')
       .then(function (res) {
-        console.log("userinfo_get", res.data.detail)
+        //console.log("userinfo_get", res.data.detail)
           if (res.data.detail == "Signature has expired.")
           {
-            console.log("redirect", res.data.detail)
+            //console.log("redirect", res.data.detail)
             app.globalData.jwt = null;
             wx.redirectTo({
               url: '../../login/login',

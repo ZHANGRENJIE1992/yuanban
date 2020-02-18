@@ -28,14 +28,14 @@ urlpatterns = [
     #url(r'^', include(router.urls)),
     re_path('^ielts/Create/', createieltsdetailinfo.as_view(), name='createieltscourse'),
     re_path('^GetIelts/', Getieltsdetailinfo.as_view(), name='GetIelts'),  # 用户
-    re_path('^GetIelts/list/', GetIeltsList.as_view(), name='GetIeltList'),  # 用户
+    re_path('^GetIeltslist/', GetIeltsList.as_view(), name='GetIeltList'),  # 用户
     re_path('^toefl/Create/', createtoefldetailinfo.as_view(), name='createtoeflcourse'),
     re_path('^GetToefl/', Gettoefldetailinfo.as_view(), name='GetToefl'),  # 用户
-    re_path('^GetToefl/list/', GetToeflList.as_view(), name='GetToeflList'),  # 用户
+    re_path('^GetToefllist/', GetToeflList.as_view(), name='GetToeflList'),  # 用户
     re_path('^gre/Create/', creategredetailinfo.as_view(), name='creategrecourse'),
     re_path('^GetGre/', Getgredetailinfo.as_view(), name='GetGre'),  # 用户
-    re_path('^GetGre/list/', GetGreList.as_view(), name='GetGreList'),  # 用户
+    re_path('^GetGrelist/', GetGreList.as_view(), name='GetGreList'),  # 用户
     re_path('^gmat/Create/', creategmatdetailinfo.as_view(), name='creategmatcourse'),
     re_path('^GetGmat/', Getgmatdetailinfo.as_view(), name='GetGmat'),  # 用户
-    re_path('^GetGmat/list/', GetGmatList.as_view(), name='GetGmatList'),  # 用户
+    re_path('^GetGmatlist/', GetGmatList.as_view(), name='GetGmatList'),  # 用户
 ]

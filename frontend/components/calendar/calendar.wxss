@@ -186,6 +186,15 @@
   background: #52b8f5;
   color: #fff;
 }
+.date-ontime{
+  background: #21ca12;
+  color: #fff;
+}
+
+.date-delay{
+  background: #f0e005;
+  color: #fff;
+}
 
 .data-circle {
   position: absolute;
