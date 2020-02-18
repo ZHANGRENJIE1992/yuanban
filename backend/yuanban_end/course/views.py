@@ -492,11 +492,14 @@ class GetIeltsList(views.APIView):
     def get(self, request):
         user = self.request.user
         monthinfo = request.GET.get('month', None)
+        print("monthinfo", monthinfo)
         if not monthinfo:
             dateinfo = datetime.date.today()
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
         else:
             year, month = monthinfo.split('-')
+            year = int(year)
+            month = int(month)
             last = calendar.monthrange(year, month)[1]
             dateinfo = datetime.datetime.strptime(monthinfo, '%Y-%m').date()
         fistday = dateinfo.replace(day=1)
@@ -511,7 +514,10 @@ class GetIeltsList(views.APIView):
                     }
             for row in ies:
                 if row.signdate == dateinfo.replace(day=i):
-                    info['sign'] = 1
+                    if(row.buqianstatus == True):
+                        info['sign'] = 1
+                    else:
+                        info['sign'] = 2
                     break
             data.append(info)
         res['data'] = data
@@ -535,6 +541,8 @@ class GetToeflList(views.APIView):
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
         else:
             year, month = monthinfo.split('-')
+            year = int(year)
+            month = int(month)
             last = calendar.monthrange(year, month)[1]
             dateinfo = datetime.datetime.strptime(monthinfo, '%Y-%m').date()
         fistday = dateinfo.replace(day=1)
@@ -549,7 +557,10 @@ class GetToeflList(views.APIView):
                     }
             for row in ies:
                 if row.signdate == dateinfo.replace(day=i):
-                    info['sign'] = 1
+                    if(row.buqianstatus == True):
+                        info['sign'] = 1
+                    else:
+                        info['sign'] = 2
                     break
             data.append(info)
         res['data'] = data
@@ -781,6 +792,8 @@ class GetGreList(views.APIView):
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
         else:
             year, month = monthinfo.split('-')
+            year = int(year)
+            month = int(month)
             last = calendar.monthrange(year, month)[1]
             dateinfo = datetime.datetime.strptime(monthinfo, '%Y-%m').date()
         fistday = dateinfo.replace(day=1)
@@ -795,7 +808,10 @@ class GetGreList(views.APIView):
                     }
             for row in ies:
                 if row.signdate == dateinfo.replace(day=i):
-                    info['sign'] = 1
+                    if(row.buqianstatus == True):
+                        info['sign'] = 1
+                    else:
+                        info['sign'] = 2
                     break
             data.append(info)
         res['data'] = data
@@ -1049,6 +1065,8 @@ class GetGmatList(views.APIView):
             last = calendar.monthrange(dateinfo.year, dateinfo.month)[1]
         else:
             year, month = monthinfo.split('-')
+            year = int(year)
+            month = int(month)
             last = calendar.monthrange(year, month)[1]
             dateinfo = datetime.datetime.strptime(monthinfo, '%Y-%m').date()
         fistday = dateinfo.replace(day=1)
@@ -1063,7 +1081,10 @@ class GetGmatList(views.APIView):
                     }
             for row in ies:
                 if row.signdate == dateinfo.replace(day=i):
-                    info['sign'] = 1
+                    if(row.buqianstatus == True):
+                        info['sign'] = 1
+                    else:
+                        info['sign'] = 2
                     break
             data.append(info)
         res['data'] = data
