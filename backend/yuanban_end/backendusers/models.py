@@ -19,7 +19,6 @@ class UserProFile(AbstractUser):
     openid = models.CharField(max_length=200, default='', verbose_name='用户微信唯一ID')
     avatarUrl = models.URLField(max_length=500, default='', verbose_name='用户微信头像')
     country = models.CharField(max_length=100, default='', verbose_name='用户微信国家')
-    user_bh = models.CharField(max_length=50, default=uuid4().hex, unique=True, verbose_name='用户唯一ID')
     province = models.CharField(max_length=100, default='', verbose_name='用户微信城市')
     city = models.CharField(max_length=100, default='', verbose_name='用户微信区域')
     language = models.CharField(max_length=100, default='', verbose_name='用户微信语言')
