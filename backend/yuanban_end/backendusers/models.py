@@ -2,6 +2,10 @@ from uuid import uuid4
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser  # 继承Django_AbstractUser用来扩展models
+import shortuuid
+# from .common import Common
+# from dateutil.relativedelta import relativedelta
+from django.utils.timezone import now, timedelta
 
 image_file = uuid4().hex
 
@@ -45,3 +49,36 @@ class UserProFile(AbstractUser):
 
     def __str__(self):
         return self.name
+
+
+def createuuid():
+    return shortuuid.uuid()
+
+
+class Base(models.Model):
+    del_state_type = ((0, '已删除'), (1, '默认'))
+    uuid = models.CharField('ID', max_length=22, primary_key=True, default=createuuid, editable=False)
+    add_time = models.DateTimeField('创建时间', auto_now_add=True)
+    modified_time = models.DateTimeField('修改时间', auto_now=True)
+    del_state = models.IntegerField('删除状态', choices=del_state_type, default=1, db_index=True)
+
+    class Meta:
+        abstract = True
+
+
+class User(Base):
+    """用户表"""
+    location_types = ((0, 'Suzhou'), (1, 'Shanghai'),)
+    system_role_type = ((0, '普通用户'), (1, '管理员'),)
+    name = models.CharField('姓名', max_length=50)
+    password = models.CharField('密码', max_length=200)
+    cellphone = models.CharField('手机号', max_length=15, blank=True, null=True)
+    email = models.CharField('邮箱', max_length=50, blank=True, null=True)
+    wechat_name = models.CharField('微信名', max_length=50)
+    system_role = models.IntegerField('系统角色', choices=system_role_type, default=0)
+    school = models.CharField('学校', max_length=200, blank=True, null=True)
+    grade = models.CharField('多少届', max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+

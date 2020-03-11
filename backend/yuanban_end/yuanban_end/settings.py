@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'yuanban_end.middleware.LoginMiddleware',
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -89,8 +90,8 @@ DATABASES = {
         'USER': 'root',
         #'PASSWORD':'Yantuagent2017',
         'PASSWORD': 'ZRJ19920708',
-        'HOST': '127.0.0.1',
-        #'HOST': '132.232.79.194',
+        # 'HOST': '127.0.0.1',
+        'HOST': '132.232.79.194',
         #'HOST': 'localhost',
         'PORT': '3306',
     }

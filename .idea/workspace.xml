@@ -2,23 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e35fe7-5489-4a3e-aafe-cd4a9aab2044" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/course/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/userbase.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/yuanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yuanban.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/calendar/calendar.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index/gmat/gmat.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/gmat/gmat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index/gre/gre.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/gre/gre.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index/ielts/ielts.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/ielts/ielts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index/toefl/toefl.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index/toefl/toefl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/user/record/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/record/record.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/user/record/record.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/record/record.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/user/userinfo/userinfo.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/upFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/upFiles.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,14 +22,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/models.py">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="61" />
+            <state relative-caret-position="209">
+              <caret line="90" column="37" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="37" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
+                <element signature="e#312#321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="22" column="19" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="19" />
+              <folding>
+                <element signature="e#635#667#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+            <state relative-caret-position="870">
+              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
               <folding>
                 <element signature="e#671#719#0" expanded="true" />
               </folding>
@@ -53,69 +60,84 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
+        <entry file="file://$PROJECT_DIR$/frontend/api/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="200" column="10" lean-forward="true" selection-start-line="200" selection-start-column="10" selection-end-line="200" selection-end-column="10" />
+            <state relative-caret-position="480">
+              <caret line="16" column="44" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
               <folding>
-                <element signature="e#312#321#0" expanded="true" />
+                <element signature="e#671#719#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/all.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="1366" lean-forward="true" selection-start-line="1366" selection-end-line="1366" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/error.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/request.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/scprits.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="144" column="37" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="37" />
+            <state relative-caret-position="155">
+              <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#15287#15702#0" />
+                <element signature="e#15742#15983#0" />
+                <element signature="e#16024#17396#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/utils/weixin_util/weixin/pay.py">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="1290">
+              <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
               <folding>
-                <element signature="e#91#102#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/userbase.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/middleware.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,9 +157,16 @@
       <find>127.0.0.1</find>
       <find>logs</find>
       <find>logger</find>
+      <find>pipen</find>
+      <find>uery.decode</find>
+      <find>Common</find>
+      <find>GetToefllist</find>
+      <find>authtoken</find>
     </findStrings>
     <dirStrings>
       <dir>D:\code\project\test\yuanban\backend</dir>
+      <dir>E:\project\sihuo\yuanban</dir>
+      <dir>E:\project\sihuo\yuanban\frontend</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -147,22 +176,29 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/Serializers.py" />
-        <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py" />
-        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py" />
         <option value="$PROJECT_DIR$/frontend/api/api.js" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/models.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/urls.py" />
         <option value="$PROJECT_DIR$/backend/yuanban_end/course/views.py" />
-        <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/django/db/backends/mysql/base.py" />
+        <option value="$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/django/db/backends/mysql/operations.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/userbase.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/user.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/yuanban_end/middleware.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py" />
+        <option value="$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="86" />
-    <option name="y" value="37" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="85" />
+    <option name="y" value="35" />
     <option name="width" value="1440" />
-    <option name="height" value="812" />
+    <option name="height" value="815" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -172,6 +208,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -195,6 +232,20 @@
               <item name="yuanban" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="yuanban_end" type="462c0819:PsiDirectoryNode" />
+              <item name="backendusers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuanban" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="yuanban_end" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yuanban" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="yuanban_end" type="462c0819:PsiDirectoryNode" />
               <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -206,31 +257,25 @@
             </path>
             <path>
               <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yuanban" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yuanban" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yuanban" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../boshi-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project\sihuo\yuanban\backend\yuanban_end\yuanban_end" />
+      <recent name="E:\project\sihuo\yuanban\backend\yuanban_end\backendusers" />
       <recent name="D:\code\project\test\yuanban\backend\yuanban_end\course" />
     </key>
   </component>
@@ -257,27 +302,31 @@
       <option name="presentableId" value="Default" />
       <updated>1581421758656</updated>
       <workItem from="1581421762503" duration="48711000" />
+      <workItem from="1583676475680" duration="1848000" />
+      <workItem from="1583756996608" duration="7019000" />
+      <workItem from="1583927842055" duration="2976000" />
+      <workItem from="1583930850319" duration="1599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48711000" />
+    <option name="totallyTimeSpent" value="62153000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-6" y="-6" width="1549" height="842" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16311301" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20763563" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.40130153" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.4016854" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Python Console" order="4" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="Run" order="8" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
@@ -294,9 +343,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/sys_info.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -310,13 +356,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/importlib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/importlib/__init__.py" />
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -331,94 +371,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding>
-            <element signature="e#635#667#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/api/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="2855" selection-start-line="2855" selection-end-line="2855" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/919163386/_io.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="894" column="8" selection-start-line="894" selection-start-column="8" selection-end-line="894" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding>
-            <element signature="e#671#719#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-          <folding>
-            <element signature="e#671#719#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/rest_framework/status.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/utils/weixin_util/weixin/pay.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="e#91#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="144" column="37" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/PIL/Image.py" />
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/919163386/_io.py" />
+    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/rest_framework/status.py" />
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -435,56 +390,177 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/rest_framework/response.py" />
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/django.log" />
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/request.log" />
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/scprits.log" />
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/error.log" />
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/all.log" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/django/db/backends/mysql/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/django/db/backends/mysql/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/utils/weixin_util/weixin/pay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="e#91#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/sys_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/django/http/response.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="550" column="8" selection-start-line="550" selection-start-column="8" selection-end-line="550" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/yuanban-KYzr-tit/Lib/site-packages/rest_framework/status.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="61" />
+        <state>
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.virtualenvs/rule_manager-uwbJ7SEE/Lib/site-packages/rest_framework/response.py">
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-305">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/django.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/request.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/scprits.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/error.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/log/all.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="1366" lean-forward="true" selection-start-line="1366" selection-end-line="1366" />
+        <state>
+          <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="200" column="10" lean-forward="true" selection-start-line="200" selection-start-column="10" selection-end-line="200" selection-end-column="10" />
+        <state relative-caret-position="209">
+          <caret line="90" column="37" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="37" />
           <folding>
             <element signature="e#312#321#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        <state relative-caret-position="660">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="19" />
+          <folding>
+            <element signature="e#635#667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/course/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="e#671#719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/api/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/userbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/yuanban_end/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+          <folding>
+            <element signature="e#671#719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/yuanban_end/backendusers/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#15287#15702#0" />
+            <element signature="e#15742#15983#0" />
+            <element signature="e#16024#17396#0" />
+          </folding>
         </state>
       </provider>
     </entry>

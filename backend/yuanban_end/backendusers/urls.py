@@ -17,8 +17,9 @@ Including another URLconf
 from rest_framework.routers import DefaultRouter
 
 from .views import Registered, ObtainJSONWebToken, GetUser
-
+from .views import *
 from django.urls import path,include,re_path
+from django.views.decorators.csrf import csrf_exempt
 app_name = 'users'
 router = DefaultRouter()
 router.register(r'Registered', Registered, basename='Registered')  # 注册
@@ -27,4 +28,12 @@ urlpatterns = [
     re_path(r'^', include(router.urls)),
     re_path(r'^login/$', ObtainJSONWebToken.as_view()),  # 登录
     re_path('^GetUser/', GetUser.as_view(), name='GetUser'),  # 用户
+    re_path('^teacher/userlogin/', csrf_exempt(LoginView.as_view()), name="login"),
+    re_path('^teacher/logout/', csrf_exempt(LogoutView.as_view()), name="logout"),
+    re_path('^teacher/create/user/', csrf_exempt(CreateUserView.as_view()), name="createuser"),
+    re_path('^teacher/oneuser/', csrf_exempt(OneUserView.as_view()), name="oneuser"),
+    re_path('^teacher/alluser/', csrf_exempt(AllUser.as_view()), name='alluser'),
+    re_path('^teacher/resetpwd/', csrf_exempt(ResetPwdView.as_view()), name='resetpwd'),
+    re_path('^teacher/currentuser/', csrf_exempt(CurrentUser.as_view()), name='currentuser'),
+    re_path('^teacher/changepwd/', csrf_exempt(ChangePwdView.as_view()), name='changepwd'),
 ]

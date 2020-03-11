@@ -28,6 +28,12 @@ from .models import UserProFile
 from yuanban_end.settings import BASE_DIR
 from yuanban_end.settings import IMAGES_URL,MEDIA_URL
 from .Serializers import UserRegSerializer
+from .user import User as UserCommon
+from .common import Common
+from djtool.views import SignOutView
+from djtool.review import View, ListView
+from .models import User
+from django.http import JsonResponse
 
 jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
 encoding='unicode_escape'
@@ -310,3 +316,221 @@ class GetUser(views.APIView):
             self.request.user.save()
             return Response({'message': '签名已更新'}, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class CreateUserView(Common, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = request.POST
+            assert data.get('name') and data.get('password') and data.get('wechat_name') and data.get('cellphone')
+            print(33, data)
+            name = data.get('name')
+            password = data.get('password')
+            cellphone = data.get('cellphone','')
+            wechat_name = data.get('wechat_name')
+            email = data.get('email')
+            school = data.get('school')
+            grade = data.get('grade')
+            system_role = data.get('system_role',0)
+            if User.objects.filter(wechat_name=wechat_name, del_state=1).exists():
+              return JsonResponse(self.msg(20000, remsg='用户已存在'))
+            user = UserCommon()
+            password = user.make_password(password)
+            User.objects.create(
+              name=name,
+              password=password,
+              wechat_name=wechat_name,
+                school=school,
+                grade=grade,
+              cellphone=cellphone,
+              email=email,
+              system_role=system_role,
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000), status=status.HTTP_200_OK)
+        else:
+          return JsonResponse(self.msg(10000), status=status.HTTP_200_OK)
+
+
+class OneUserView(Common, View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            data = request.GET
+            assert data.get('uuid')
+            user = User.objects.get(uuid=data.get('uuid'), del_state=1)
+            info = {
+              'name': user.name,
+              'wechat_name': user.wechat_name,
+              'cellphone': user.cellphone or '',
+              'grade': user.grade,
+              'school': user.school,
+              'email': user.email,
+              'system_role':user.system_role,
+            }
+        except:
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000, info))
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = request.POST
+            assert data.get('name') and data.get('wechat_name') and data.get('uuid')
+            name = data.get('name')
+            wechat_name = data.get('wechat_name')
+            cellphone = data.get('cellphone', '')
+            email = data.get('email')
+            grade = data.get('grade')
+            school = data.get('school')
+            # system_role = data.get('system_role')
+            uuid = data.get('uuid')
+            if User.objects.filter(wechat_name=wechat_name, del_state=1).exclude(uuid=uuid).exists():
+                return JsonResponse(self.msg(20000, remsg='用户已存在'))
+            print(name)
+            User.objects.filter(uuid=uuid).update(
+              name=name,
+              wechat_name=wechat_name,
+              cellphone=cellphone,
+              email=email,
+                grade=grade,
+                school=school,
+              # system_role=system_role,
+            )
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000))
+
+
+class LoginView(Common,View):
+
+    def post(self, request, *args, **kwargs):
+        '''登录'''
+        user = UserCommon()
+        # if request.session.get('validate', '').lower() == request.POST.get(
+        #   'code', '').lower():
+        print(request.POST)
+        result = user.login(request,
+                            request.POST.get('cellphone'),
+                            request.POST.get('password'))
+        return JsonResponse(result)
+
+
+class LogoutView(Common, View):
+
+    def post(self, request, *args, **kwargs):
+        print(7777)
+        try:
+            del request.session['login']
+            response = JsonResponse(self.msg(10000))
+        except:
+            response = JsonResponse(self.msg(20000))
+        return response
+
+
+class AllUser(Common, ListView):
+
+    def get(self, request, *args, **kwargs):
+        data = request.GET
+        pg = int(data.get("page", 1))
+        pre = int(data.get("limit", 15))
+        users = User.objects.filter(del_state=1)
+
+        # users = User.objects.filter(worklocation=current_location)
+        if data.get('name'):
+            users = users.filter(name__icontains=data.get('name'))
+        # # if data.get('personal_ID'):
+        # #     users = users.filter(personal_ID__contains=data.get('personal_ID'))
+        # if data.get('email'):
+        #     users = users.filter(email__icontains=data.get('email'))
+        data = []
+        i = 0
+        page = self.page(users, pg, pre=pre)
+        for row in page.object_list:
+            i += 1
+            data.append({
+                "uuid":
+                    row.uuid,
+                "name":
+                    row.name,
+                "school":
+                    row.school or '',
+                "grade":
+                    row.grade or '',
+                'cellphone': row.cellphone or '',
+                "email":
+                    row.email,
+                'system_role':
+                    row.system_role,
+                'wechat_name':
+                    row.wechat_name,
+            })
+        res = {}
+        res['count'] = users.count()
+        res['results'] = data
+        return JsonResponse(self.msg(10000, res))
+
+
+class ResetPwdView(Common, View):
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        assert data.get('uuid')
+        user = UserCommon()
+        password = user.make_password('111111')
+        try:
+            user_obj = User.objects.get(uuid=data.get('uuid'), del_state=1)
+            user_obj.password = password
+            user_obj.save()
+        except:
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000))
+
+
+class CurrentUser(Common, View):
+    def get(self, request, *args, **kwargs):
+        try:
+            print(33333)
+            print(request.session.values)
+            print(dir(request.session))
+            user = User.objects.get(uuid=request.session['login'], del_state=1)
+            info = {
+                'name': user.name,
+                'wechat_name': user.wechat_name,
+                'school': user.school or '',
+                'grade': user.grade or '',
+                'email': user.email,
+                'system_role': user.system_role,
+                'uuid': user.uuid,
+                'cellphone': user.cellphone
+            }
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000, info))
+
+
+class ChangePwdView(Common, View):
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        assert data.get('uuid') and data.get('old_password') and data.get('new_password')
+
+        try:
+            user_obj = User.objects.get(uuid=data.get('uuid'), del_state=1)
+            user = UserCommon()
+            if user.check_password(data.get('old_password'), user_obj.password):
+                password = user.make_password(data.get('new_password'))
+                user_obj.password = password
+                user_obj.save()
+            else:
+                return JsonResponse(self.msg(20000))
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000))
