@@ -34,6 +34,7 @@ from djtool.views import SignOutView
 from djtool.review import View, ListView
 from .models import User
 from django.http import JsonResponse
+from course.models import *
 
 jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
 encoding='unicode_escape'
@@ -534,3 +535,154 @@ class ChangePwdView(Common, View):
             return JsonResponse(self.msg(20000))
         else:
             return JsonResponse(self.msg(10000))
+
+
+class studentLogin(views.APIView):
+    '''
+    微信学员登录信息
+    '''
+    authentication_classes = (authentication.SessionAuthentication, JSONWebTokenAuthentication)  # Token验证
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
+
+    def post(self, request):
+        user = UserCommon()
+        # if request.session.get('validate', '').lower() == request.POST.get(
+        #   'code', '').lower():
+        print(request.POST)
+        result = user.login(request,
+                            request.POST.get('cellphone'),
+                            request.POST.get('password'))
+        if result['code'] == 10000:
+            u_obj = User.objects.get(cellphone=request.POST.get('cellphone'), del_state=1)
+            u_obj.wechat_user = request.user
+            u_obj.save()
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+class StudyDetail(Common, View):
+
+    def get_sum(self, query, attr):
+        num = 0
+        for i in query:
+            num += getattr(i, attr)
+        return num
+
+    def get_avg(self, query, attr):
+        num = 0
+        for i in query:
+            num += getattr(i, attr)
+        avg = int(num/query.count())
+        return avg
+
+    def get(self, request, *args, **kwargs):
+        try:
+            data = request.GET
+            course = int(data.get("course", 1))
+            start_time = data.get("start_time")
+            end_time = data.get("end_time")
+            user_id = data.get("uuid")
+            assert course and start_time and end_time and user_id
+            user = User.objects.get(uuid=user_id)
+            user = user.wechat_user
+            if course == 1:
+                cous = ieltsModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
+                summary = {}
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
+                summary['readpercent'] = self.get_avg(cous, 'readpercent')
+                summary['listenpercent'] = self.get_avg(cous, 'listenpercent')
+                curve = []
+                for one in cous:
+                    detail = {
+                        'wordnumber': one.wordnumber,
+                        'readpercent': one.readpercent,
+                        'listenpercent': one.listenpercent,
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        # 'readimageset': one.readimageset,
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
+                        # 'writeimageset': one.writeimageset,
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
+                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+                    curve.append(detail)
+            elif course == 2:
+                cous = toeflModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
+                summary = {}
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
+                summary['readpercent'] = self.get_avg(cous, 'readpercent')
+                summary['listenpercent'] = self.get_avg(cous, 'listenpercent')
+                curve = []
+                for one in cous:
+                    detail = {
+                        'wordnumber': one.wordnumber,
+                        'readpercent': one.readpercent,
+                        'listenpercent': one.listenpercent,
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        # 'readimageset': one.readimageset,
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
+                        # 'writeimageset': one.writeimageset,
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
+                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+                    curve.append(detail)
+            elif course == 3:
+                cous = greModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
+                summary = {}
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
+                summary['fill_blank_number'] = self.get_sum(cous, 'fill_blank_number')
+                summary['readpercent'] = self.get_avg(cous, 'readpercent')
+                summary['mathpercent'] = self.get_avg(cous, 'mathpercent')
+                curve = []
+                for one in cous:
+                    detail = {
+                        'wordnumber': one.wordnumber,
+                        'readpercent': one.readpercent,
+                        'fill_blank_number': one.fill_blank_number,
+                        'mathpercent': one.mathpercent,
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'fill_blank_imageset': [IMAGES_URL + MEDIA_URL + w for w in one.fill_blank_imageset.split(',')] if one.fill_blank_imageset else [],
+                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+                    curve.append(detail)
+            elif course == 4:
+                cous = gmatModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
+                summary = {}
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
+                summary['grammarnumber'] = self.get_sum(cous, 'grammarnumber')
+                summary['readpercent'] = self.get_avg(cous, 'readpercent')
+                summary['mathpercent'] = self.get_avg(cous, 'mathpercent')
+                summary['logicpercent'] = self.get_avg(cous, 'logicpercent')
+                curve = []
+                for one in cous:
+                    detail = {
+                        'wordnumber': one.wordnumber,
+                        'readpercent': one.readpercent,
+                        'grammarnumber': one.grammarnumber,
+                        'mathpercent': one.mathpercent,
+                        'logicpercent': one.logicpercent,
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'grammarimageset': [IMAGES_URL + MEDIA_URL + w for w in one.grammarimageset.split(',')] if one.grammarimageset else [],
+                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
+                        'logicimageset': [IMAGES_URL + MEDIA_URL + w for w in one.logicimageset.split(',')] if one.logicimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+                    curve.append(detail)
+            res = {}
+            res['summary'] = summary
+            res['curve'] = curve
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000, res))
+

@@ -27,6 +27,7 @@ router.register(r'Registered', Registered, basename='Registered')  # 注册
 urlpatterns = [
     re_path(r'^', include(router.urls)),
     re_path(r'^login/$', ObtainJSONWebToken.as_view()),  # 登录
+    re_path(r'^student/login/$', studentLogin.as_view()),  # 登录
     re_path('^GetUser/', GetUser.as_view(), name='GetUser'),  # 用户
     re_path('^teacher/userlogin/', csrf_exempt(LoginView.as_view()), name="login"),
     re_path('^teacher/logout/', csrf_exempt(LogoutView.as_view()), name="logout"),
@@ -35,5 +36,6 @@ urlpatterns = [
     re_path('^teacher/alluser/', csrf_exempt(AllUser.as_view()), name='alluser'),
     re_path('^teacher/resetpwd/', csrf_exempt(ResetPwdView.as_view()), name='resetpwd'),
     re_path('^teacher/currentuser/', csrf_exempt(CurrentUser.as_view()), name='currentuser'),
+    re_path('^teacher/studentdetail/', csrf_exempt(StudyDetail.as_view()), name='currentuser'),
     re_path('^teacher/changepwd/', csrf_exempt(ChangePwdView.as_view()), name='changepwd'),
 ]

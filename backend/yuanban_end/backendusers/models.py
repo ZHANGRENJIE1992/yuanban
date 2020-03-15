@@ -78,6 +78,7 @@ class User(Base):
     system_role = models.IntegerField('系统角色', choices=system_role_type, default=0)
     school = models.CharField('学校', max_length=200, blank=True, null=True)
     grade = models.CharField('多少届', max_length=30, blank=True, null=True)
+    wechat_user = models.OneToOneField(UserProFile, verbose_name='微信用户', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
