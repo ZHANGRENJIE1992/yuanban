@@ -30,4 +30,7 @@ class LoginMiddleware(MiddlewareMixin, Common):
         #         else:
         #             request.adminuuid = agent
         if request.method == "POST":
-            request.POST = json.loads(request.body)
+            body = request.body
+            if isinstance(body, bytes):
+                body = str(body, encoding='utf-8')
+            request.POST = json.loads(body)
