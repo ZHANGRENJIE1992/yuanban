@@ -69,7 +69,7 @@ class Base(models.Model):
 class User(Base):
     """用户表"""
     location_types = ((0, 'Suzhou'), (1, 'Shanghai'),)
-    system_role_type = ((0, '普通用户'), (1, '管理员'),)
+    system_role_type = ((0, '学生'), (1, '教师'), (2, '管理员'),)
     name = models.CharField('姓名', max_length=50)
     password = models.CharField('密码', max_length=200)
     cellphone = models.CharField('手机号', max_length=15, blank=True, null=True)
@@ -78,8 +78,18 @@ class User(Base):
     system_role = models.IntegerField('系统角色', choices=system_role_type, default=0)
     school = models.CharField('学校', max_length=200, blank=True, null=True)
     grade = models.CharField('多少届', max_length=30, blank=True, null=True)
+    belong = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     wechat_user = models.OneToOneField(UserProFile, verbose_name='微信用户', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def has_students(self):
+        data = []
+        for one in self.user_set.all():
+            data.append({
+                'name': one.name,
+                'uuid': one.uuid
+            })
+            return data
 

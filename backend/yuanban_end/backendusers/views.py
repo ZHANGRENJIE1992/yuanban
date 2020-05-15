@@ -334,6 +334,8 @@ class CreateUserView(Common, View):
             school = data.get('school')
             grade = data.get('grade')
             system_role = data.get('system_role',0)
+            user = User.objects.get(uuid=request.session['login'], del_state=1)
+            belong = user
             if User.objects.filter(wechat_name=wechat_name, del_state=1).exists():
               return JsonResponse(self.msg(20000, remsg='用户已存在'))
             user = UserCommon()
@@ -347,12 +349,74 @@ class CreateUserView(Common, View):
               cellphone=cellphone,
               email=email,
               system_role=system_role,
+                belong=belong,
             )
         except Exception as e:
             print(e)
             return JsonResponse(self.msg(20000), status=status.HTTP_200_OK)
         else:
           return JsonResponse(self.msg(10000), status=status.HTTP_200_OK)
+
+
+class AllTeacher(Common, ListView):
+
+    def get(self, request, *args, **kwargs):
+        users = User.objects.filter(del_state=1, system_role=1)
+        data = []
+        i = 0
+        for row in users:
+            i += 1
+            data.append({
+                "uuid":
+                    row.uuid,
+                "name":
+                    row.name,
+            })
+        res = {}
+        res['count'] = users.count()
+        res['results'] = data
+        return JsonResponse(self.msg(10000, res))
+
+
+class AllTeacherPage(Common, ListView):
+
+    def get(self, request, *args, **kwargs):
+        data = request.GET
+        pg = int(data.get("page", 1))
+        pre = int(data.get("limit", 15))
+        users = User.objects.filter(del_state=1, system_role=1)
+        if data.get('name'):
+            users = users.filter(name__icontains=data.get('name'))
+        # # if data.get('personal_ID'):
+        # #     users = users.filter(personal_ID__contains=data.get('personal_ID'))
+        # if data.get('email'):
+        #     users = users.filter(email__icontains=data.get('email'))
+        data = []
+        i = 0
+        page = self.page(users, pg, pre=pre)
+        for row in page.object_list:
+            i += 1
+            data.append({
+                "uuid":
+                    row.uuid,
+                "name":
+                    row.name,
+                "school":
+                    row.school or '',
+                "grade":
+                    row.grade or '',
+                'cellphone': row.cellphone or '',
+                "email":
+                    row.email,
+                'system_role':
+                    row.system_role,
+                'wechat_name':
+                    row.wechat_name,
+            })
+        res = {}
+        res['count'] = users.count()
+        res['results'] = data
+        return JsonResponse(self.msg(10000, res))
 
 
 class OneUserView(Common, View):
@@ -370,6 +434,9 @@ class OneUserView(Common, View):
               'school': user.school,
               'email': user.email,
               'system_role':user.system_role,
+                'belong_uuid':user.belong.uuid if user.belong else '',
+                'belong_name':user.belong.name if user.belong else '',
+                'has_students':user.has_students(),
             }
         except:
             return JsonResponse(self.msg(20000))
@@ -379,15 +446,20 @@ class OneUserView(Common, View):
     def post(self, request, *args, **kwargs):
         try:
             data = request.POST
-            assert data.get('name') and data.get('wechat_name') and data.get('uuid')
+            assert data.get('uuid')
             name = data.get('name')
             wechat_name = data.get('wechat_name')
             cellphone = data.get('cellphone', '')
             email = data.get('email')
             grade = data.get('grade')
             school = data.get('school')
-            # system_role = data.get('system_role')
             uuid = data.get('uuid')
+            has_students = data.get('has_students')
+            if data.get('belong_uuid'):
+                belong = User.objects.get(belong__uuid=data.get('belong_uuid'), del_state=1)
+            else:
+                belong = User.objects.get(uuid=data.get('uuid'), del_state=1).belong
+            # system_role = data.get('system_role')
             if User.objects.filter(wechat_name=wechat_name, del_state=1).exclude(uuid=uuid).exists():
                 return JsonResponse(self.msg(20000, remsg='用户已存在'))
             print(name)
@@ -398,8 +470,13 @@ class OneUserView(Common, View):
               email=email,
                 grade=grade,
                 school=school,
+                belong=belong,
               # system_role=system_role,
             )
+            if has_students:
+                User.objects.filter(uuid=uuid).update(belong=None)
+                user = User.objects.get(uuid=data.get('uuid'), del_state=1)
+                User.objects.filter(uuid__in=has_students).update(belong=user)
         except Exception as e:
             print(e)
             return JsonResponse(self.msg(20000))
@@ -439,11 +516,13 @@ class AllUser(Common, ListView):
         data = request.GET
         pg = int(data.get("page", 1))
         pre = int(data.get("limit", 15))
+        # users = User.objects.filter(del_state=1, system_role=0)
         users = User.objects.filter(del_state=1)
 
-        # users = User.objects.filter(worklocation=current_location)
         if data.get('name'):
             users = users.filter(name__icontains=data.get('name'))
+        if data.get('system_role'):
+            users = users.filter(system_role=int(data.get('system_role')))
         # # if data.get('personal_ID'):
         # #     users = users.filter(personal_ID__contains=data.get('personal_ID'))
         # if data.get('email'):
@@ -469,6 +548,7 @@ class AllUser(Common, ListView):
                     row.system_role,
                 'wechat_name':
                     row.wechat_name,
+                'belong':row.belong.name if row.belong else '',
             })
         res = {}
         res['count'] = users.count()
@@ -485,6 +565,20 @@ class ResetPwdView(Common, View):
         try:
             user_obj = User.objects.get(uuid=data.get('uuid'), del_state=1)
             user_obj.password = password
+            user_obj.save()
+        except:
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000))
+
+
+class DelUser(Common, View):
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        assert data.get('uuid')
+        try:
+            user_obj = User.objects.get(uuid=data.get('uuid'), del_state=1)
+            user_obj.del_state = 0
             user_obj.save()
         except:
             return JsonResponse(self.msg(20000))
