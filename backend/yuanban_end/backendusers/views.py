@@ -367,7 +367,7 @@ class CreateUserView(Common, View):
 class AllTeacher(Common, ListView):
 
     def get(self, request, *args, **kwargs):
-        users = User.objects.filter(del_state=1, system_role=1)
+        users = User.objects.filter(del_state=1, system_role__in=[1, 2])
         data = []
         i = 0
         for row in users:
