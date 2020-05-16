@@ -335,7 +335,11 @@ class CreateUserView(Common, View):
             grade = data.get('grade')
             system_role = data.get('system_role',0)
             user = User.objects.get(uuid=request.session['login'], del_state=1)
-            belong = user
+            if data.get('belong_uuid'):
+                print(333)
+                belong = User.objects.get(uuid=data.get('belong_uuid'), del_state=1)
+            else:
+                belong = user
             if system_role == 1:
                 belong = None
             if User.objects.filter(wechat_name=wechat_name, del_state=1).exists():
