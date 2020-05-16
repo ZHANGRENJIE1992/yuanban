@@ -336,6 +336,8 @@ class CreateUserView(Common, View):
             system_role = data.get('system_role',0)
             user = User.objects.get(uuid=request.session['login'], del_state=1)
             belong = user
+            if system_role == 1:
+                belong = None
             if User.objects.filter(wechat_name=wechat_name, del_state=1).exists():
               return JsonResponse(self.msg(20000, remsg='用户已存在'))
             user = UserCommon()
@@ -456,10 +458,12 @@ class OneUserView(Common, View):
             uuid = data.get('uuid')
             has_students = data.get('has_students')
             if data.get('belong_uuid'):
-                belong = User.objects.get(belong__uuid=data.get('belong_uuid'), del_state=1)
+                print(333)
+                belong = User.objects.get(uuid=data.get('belong_uuid'), del_state=1)
             else:
                 belong = User.objects.get(uuid=data.get('uuid'), del_state=1).belong
             # system_role = data.get('system_role')
+            print(555)
             if User.objects.filter(wechat_name=wechat_name, del_state=1).exclude(uuid=uuid).exists():
                 return JsonResponse(self.msg(20000, remsg='用户已存在'))
             print(name)
@@ -474,9 +478,14 @@ class OneUserView(Common, View):
               # system_role=system_role,
             )
             if has_students:
+                has_students = has_students.split(',')
                 User.objects.filter(uuid=uuid).update(belong=None)
                 user = User.objects.get(uuid=data.get('uuid'), del_state=1)
-                User.objects.filter(uuid__in=has_students).update(belong=user)
+                print(has_students)
+                uuids = []
+                for one in has_students:
+                    uuids.append(one)
+                User.objects.filter(uuid__in=uuids).update(belong=user)
         except Exception as e:
             print(e)
             return JsonResponse(self.msg(20000))
@@ -527,6 +536,7 @@ class AllUser(Common, ListView):
         # #     users = users.filter(personal_ID__contains=data.get('personal_ID'))
         # if data.get('email'):
         #     users = users.filter(email__icontains=data.get('email'))
+        print(users)
         data = []
         i = 0
         page = self.page(users, pg, pre=pre)
