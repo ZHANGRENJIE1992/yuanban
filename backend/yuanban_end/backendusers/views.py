@@ -697,54 +697,49 @@ class StudyDetail(Common, View):
             if course == 1:
                 cous = ieltsModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
-                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
-                summary['readpercent'] = self.get_avg(cous, 'readpercent')
-                summary['listenpercent'] = self.get_avg(cous, 'listenpercent')
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
+                summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
+                summary['listenpercent'] = self.get_avg(cous, 'listenpercent') if cous.count() > 0 else 0
                 curve = []
+                # if cous.count() == 0:
+                #     detail = {
+                #         'wordnumber': 0,
+                #         'readpercent': 0,
+                #         'listenpercent': 0,
+                #         'signdate': '',
+                #     }
+                #     curve.append(detail)
+                # else:
                 for one in cous:
                     detail = {
                         'wordnumber': one.wordnumber,
                         'readpercent': one.readpercent,
                         'listenpercent': one.listenpercent,
-                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
-                        # 'readimageset': one.readimageset,
-                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
-                        # 'writeimageset': one.writeimageset,
-                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
-                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
-                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
                         'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 2:
                 cous = toeflModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
-                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
-                summary['readpercent'] = self.get_avg(cous, 'readpercent')
-                summary['listenpercent'] = self.get_avg(cous, 'listenpercent')
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
+                summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
+                summary['listenpercent'] = self.get_avg(cous, 'listenpercent') if cous.count() > 0 else 0
                 curve = []
                 for one in cous:
                     detail = {
                         'wordnumber': one.wordnumber,
                         'readpercent': one.readpercent,
                         'listenpercent': one.listenpercent,
-                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
-                        # 'readimageset': one.readimageset,
-                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
-                        # 'writeimageset': one.writeimageset,
-                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
-                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
-                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
                         'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 3:
                 cous = greModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
-                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
-                summary['fill_blank_number'] = self.get_sum(cous, 'fill_blank_number')
-                summary['readpercent'] = self.get_avg(cous, 'readpercent')
-                summary['mathpercent'] = self.get_avg(cous, 'mathpercent')
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
+                summary['fill_blank_number'] = self.get_sum(cous, 'fill_blank_number') if cous.count() > 0 else 0
+                summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
+                summary['mathpercent'] = self.get_avg(cous, 'mathpercent') if cous.count() > 0 else 0
                 curve = []
                 for one in cous:
                     detail = {
@@ -752,22 +747,17 @@ class StudyDetail(Common, View):
                         'readpercent': one.readpercent,
                         'fill_blank_number': one.fill_blank_number,
                         'mathpercent': one.mathpercent,
-                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
-                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
-                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
-                        'fill_blank_imageset': [IMAGES_URL + MEDIA_URL + w for w in one.fill_blank_imageset.split(',')] if one.fill_blank_imageset else [],
-                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
                         'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 4:
                 cous = gmatModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
-                summary['wordnumber'] = self.get_sum(cous, 'wordnumber')
-                summary['grammarnumber'] = self.get_sum(cous, 'grammarnumber')
-                summary['readpercent'] = self.get_avg(cous, 'readpercent')
-                summary['mathpercent'] = self.get_avg(cous, 'mathpercent')
-                summary['logicpercent'] = self.get_avg(cous, 'logicpercent')
+                summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
+                summary['grammarnumber'] = self.get_sum(cous, 'grammarnumber') if cous.count() > 0 else 0
+                summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
+                summary['mathpercent'] = self.get_avg(cous, 'mathpercent') if cous.count() > 0 else 0
+                summary['logicpercent'] = self.get_avg(cous, 'logicpercent') if cous.count() > 0 else 0
                 curve = []
                 for one in cous:
                     detail = {
@@ -776,12 +766,6 @@ class StudyDetail(Common, View):
                         'grammarnumber': one.grammarnumber,
                         'mathpercent': one.mathpercent,
                         'logicpercent': one.logicpercent,
-                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
-                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
-                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
-                        'grammarimageset': [IMAGES_URL + MEDIA_URL + w for w in one.grammarimageset.split(',')] if one.grammarimageset else [],
-                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
-                        'logicimageset': [IMAGES_URL + MEDIA_URL + w for w in one.logicimageset.split(',')] if one.logicimageset else [],
                         'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
                     }
                     curve.append(detail)
@@ -794,3 +778,75 @@ class StudyDetail(Common, View):
         else:
             return JsonResponse(self.msg(10000, res))
 
+
+class ImageDetail(Common, View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            data = request.GET
+            course = int(data.get("course", 1))
+            s_time = data.get("s_time")
+            user_id = data.get("uuid")
+            assert course and s_time and user_id
+            user = User.objects.get(uuid=user_id)
+            user = user.wechat_user
+            detail = {}
+            if course == 1:
+                cous = ieltsModel.objects.filter(user=user, signdate=s_time,)
+                if cous.count() > 0:
+                    one = cous[0]
+                    detail = {
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        # 'readimageset': one.readimageset,
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
+                        # 'writeimageset': one.writeimageset,
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
+                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+            elif course == 2:
+                cous = toeflModel.objects.filter(user=user, signdate=s_time,)
+                if cous.count() > 0:
+                    one = cous[0]
+                    detail = {
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        # 'readimageset': one.readimageset,
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.wordimageset else [],
+                        # 'writeimageset': one.writeimageset,
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'listenimageset': [IMAGES_URL + MEDIA_URL + w for w in one.listenimageset.split(',')] if one.listenimageset else [],
+                        'speakimageset': [IMAGES_URL + MEDIA_URL + w for w in one.speakimageset.split(',')] if one.speakimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+            elif course == 3:
+                cous = greModel.objects.filter(user=user, signdate=s_time,)
+                if cous.count() > 0:
+                    one = cous[0]
+                    detail = {
+                        'mathpercent': one.mathpercent,
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'fill_blank_imageset': [IMAGES_URL + MEDIA_URL + w for w in one.fill_blank_imageset.split(',')] if one.fill_blank_imageset else [],
+                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+            elif course == 4:
+                cous = gmatModel.objects.filter(user=user, signdate__gte=s_time,)
+                if cous.count() > 0:
+                    one = cous[0]
+                    detail = {
+                        'wordimageset': [IMAGES_URL + MEDIA_URL + w for w in one.wordimageset.split(',')] if one.wordimageset else [],
+                        'readimageset': [IMAGES_URL + MEDIA_URL + w for w in one.readimageset.split(',')] if one.readimageset else [],
+                        'writeimageset': [IMAGES_URL + MEDIA_URL + w for w in one.writeimageset.split(',')] if one.writeimageset else [],
+                        'grammarimageset': [IMAGES_URL + MEDIA_URL + w for w in one.grammarimageset.split(',')] if one.grammarimageset else [],
+                        'mathimageset': [IMAGES_URL + MEDIA_URL + w for w in one.mathimageset.split(',')] if one.mathimageset else [],
+                        'logicimageset': [IMAGES_URL + MEDIA_URL + w for w in one.logicimageset.split(',')] if one.logicimageset else [],
+                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                    }
+        except Exception as e:
+            print(e)
+            return JsonResponse(self.msg(20000))
+        else:
+            return JsonResponse(self.msg(10000, detail))

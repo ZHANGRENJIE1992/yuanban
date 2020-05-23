@@ -40,5 +40,6 @@ urlpatterns = [
     re_path('^teacher/resetpwd/', csrf_exempt(ResetPwdView.as_view()), name='resetpwd'),
     re_path('^teacher/currentuser/', csrf_exempt(CurrentUser.as_view()), name='currentuser'),
     re_path('^teacher/studentdetail/', csrf_exempt(StudyDetail.as_view()), name='currentuser'),
+    re_path('^teacher/imagedetail/', csrf_exempt(ImageDetail.as_view()), name='imagedetail'),
     re_path('^teacher/changepwd/', csrf_exempt(ChangePwdView.as_view()), name='changepwd'),
 ]
