@@ -8,6 +8,24 @@ image_file = uuid4().hex
 
 
 # Create your models here.
+from django.apps import apps
+
+
+def getmodelfield(appname,modelname,exclude):
+    """
+    获取model的verbose_name和name的字段
+    """
+    modelobj = apps.get_model(appname, modelname)
+    filed = modelobj._meta.fields
+    print(filed)
+    fielddic = {}
+
+    params = [f for f in filed if f.name not in exclude]
+
+    for i in params:
+        fielddic[i.name] = i.verbose_name
+    return fielddic
+
 
 class ieltsModel(models.Model):
     '''
@@ -31,6 +49,12 @@ class ieltsModel(models.Model):
 
     def __str__(self):
         return self.user.name + self.signdate
+
+    @staticmethod
+    def ver_name():
+        exclude = []
+        name_dict = getmodelfield('course', 'ieltsModel', exclude)
+        return name_dict
 
 
 class toeflModel(models.Model):
@@ -56,6 +80,12 @@ class toeflModel(models.Model):
     def __str__(self):
         return self.user.name + self.signdate
 
+    @staticmethod
+    def ver_name():
+        exclude = []
+        name_dict = getmodelfield('course', 'toeflModel', exclude)
+        return name_dict
+
 
 class greModel(models.Model):
     '''
@@ -80,6 +110,12 @@ class greModel(models.Model):
 
     def __str__(self):
         return self.user.name + self.signdate
+
+    @staticmethod
+    def ver_name():
+        exclude = []
+        name_dict = getmodelfield('course', 'greModel', exclude)
+        return name_dict
 
 
 class gmatModel(models.Model):
@@ -107,3 +143,9 @@ class gmatModel(models.Model):
 
     def __str__(self):
         return self.user.name + self.signdate
+
+    @staticmethod
+    def ver_name():
+        exclude = []
+        name_dict = getmodelfield('course', 'gmatModel', exclude)
+        return name_dict

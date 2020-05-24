@@ -694,7 +694,12 @@ class StudyDetail(Common, View):
             assert course and start_time and end_time and user_id
             user = User.objects.get(uuid=user_id)
             user = user.wechat_user
+            start_time = datetime.datetime.strptime(start_time, '%Y-%m-%d').date()
+            end_time = datetime.datetime.strptime(end_time, '%Y-%m-%d').date()
+            tt = end_time - start_time
+            print(tt.days)
             if course == 1:
+                ver_names = ieltsModel.ver_name()
                 cous = ieltsModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
                 summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
@@ -710,30 +715,40 @@ class StudyDetail(Common, View):
                 #     }
                 #     curve.append(detail)
                 # else:
-                for one in cous:
+                for i in range(tt.days + 1):
+                    day = start_time + datetime.timedelta(days=i)
+                    one = None
+                    if cous.filter(signdate=day).count() > 0:
+                        one = cous.filter(signdate=day)[0]
                     detail = {
-                        'wordnumber': one.wordnumber,
-                        'readpercent': one.readpercent,
-                        'listenpercent': one.listenpercent,
-                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                        ver_names['wordnumber']: one.wordnumber if one else 0,
+                        ver_names['readpercent']: one.readpercent if one else 0,
+                        ver_names['listenpercent']: one.listenpercent if one else 0,
+                        'signdate': datetime.date.strftime(day, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 2:
+                ver_names = toeflModel.ver_name()
                 cous = toeflModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
                 summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
                 summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
                 summary['listenpercent'] = self.get_avg(cous, 'listenpercent') if cous.count() > 0 else 0
                 curve = []
-                for one in cous:
+                for i in range(tt.days + 1):
+                    day = start_time + datetime.timedelta(days=i)
+                    one = None
+                    if cous.filter(signdate=day).count() > 0:
+                        one = cous.filter(signdate=day)[0]
                     detail = {
-                        'wordnumber': one.wordnumber,
-                        'readpercent': one.readpercent,
-                        'listenpercent': one.listenpercent,
-                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                        ver_names['wordnumber']: one.wordnumber if one else 0,
+                        ver_names['readpercent']: one.readpercent if one else 0,
+                        ver_names['listenpercent']: one.listenpercent if one else 0,
+                        'signdate': datetime.date.strftime(day, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 3:
+                ver_names = greModel.ver_name()
                 cous = greModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
                 summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
@@ -741,16 +756,21 @@ class StudyDetail(Common, View):
                 summary['readpercent'] = self.get_avg(cous, 'readpercent') if cous.count() > 0 else 0
                 summary['mathpercent'] = self.get_avg(cous, 'mathpercent') if cous.count() > 0 else 0
                 curve = []
-                for one in cous:
+                for i in range(tt.days + 1):
+                    day = start_time + datetime.timedelta(days=i)
+                    one = None
+                    if cous.filter(signdate=day).count() > 0:
+                        one = cous.filter(signdate=day)[0]
                     detail = {
-                        'wordnumber': one.wordnumber,
-                        'readpercent': one.readpercent,
-                        'fill_blank_number': one.fill_blank_number,
-                        'mathpercent': one.mathpercent,
-                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                        ver_names['wordnumber']: one.wordnumber if one else 0,
+                        ver_names['readpercent']: one.readpercent if one else 0,
+                        ver_names['fill_blank_number']: one.fill_blank_number if one else 0,
+                        ver_names['mathpercent']: one.mathpercent if one else 0,
+                        'signdate': datetime.date.strftime(day, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             elif course == 4:
+                ver_names = gmatModel.ver_name()
                 cous = gmatModel.objects.filter(user=user, signdate__gte=start_time, signdate__lte=end_time)
                 summary = {}
                 summary['wordnumber'] = self.get_sum(cous, 'wordnumber') if cous.count() > 0 else 0
@@ -759,14 +779,18 @@ class StudyDetail(Common, View):
                 summary['mathpercent'] = self.get_avg(cous, 'mathpercent') if cous.count() > 0 else 0
                 summary['logicpercent'] = self.get_avg(cous, 'logicpercent') if cous.count() > 0 else 0
                 curve = []
-                for one in cous:
+                for i in range(tt.days + 1):
+                    day = start_time + datetime.timedelta(days=i)
+                    one = None
+                    if cous.filter(signdate=day).count() > 0:
+                        one = cous.filter(signdate=day)[0]
                     detail = {
-                        'wordnumber': one.wordnumber,
-                        'readpercent': one.readpercent,
-                        'grammarnumber': one.grammarnumber,
-                        'mathpercent': one.mathpercent,
-                        'logicpercent': one.logicpercent,
-                        'signdate': datetime.date.strftime(one.signdate, "%Y-%m-%d"),
+                        ver_names['wordnumber']: one.wordnumber if one else 0,
+                        ver_names['readpercent']: one.readpercent if one else 0,
+                        ver_names['grammarnumber']: one.grammarnumber if one else 0,
+                        ver_names['mathpercent']: one.mathpercent if one else 0,
+                        ver_names['logicpercent']: one.logicpercent if one else 0,
+                        'signdate': datetime.date.strftime(day, "%Y-%m-%d"),
                     }
                     curve.append(detail)
             res = {}
